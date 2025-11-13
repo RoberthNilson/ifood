@@ -82,14 +82,18 @@ const menuItems = [
   { id: '8', name: 'Vinagrete', price: 5.00, description: 'Vinagrete temperado', category: 'Acompanhamentos' },
 
   /* ---------- Bebidas ---------- */
-  { id: '27', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
-  { id: '28', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
 
-  { id: '29', name: 'Coca-Cola 1L', price: 10.00, description: 'Coca-Cola 1 litro', category: 'Bebidas' },
-  { id: '30', name: 'Guaraná 1L', price: 10.00, description: 'Guaraná 1 litro', category: 'Bebidas' },
+  { id: '27', name: 'Heineken', price: 6.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
+  { id: '28', name: 'Skoll', price: 6.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
+  { id: '29', name: 'Original', price: 6.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
 
-  { id: '31', name: 'Coca-Cola 2L', price: 15.00, description: 'Coca-Cola 2 litros', category: 'Bebidas' },
-  { id: '32', name: 'Guaraná 2L', price: 15.00, description: 'Guaraná 2 litros', category: 'Bebidas' },
+  { id: '30', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
+  { id: '31', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
+  { id: '32', name: 'Coca-Cola 1L', price: 10.00, description: 'Coca-Cola 1 litro', category: 'Bebidas' },
+  { id: '33', name: 'Guaraná 1L', price: 10.00, description: 'Guaraná 1 litro', category: 'Bebidas' },
+
+  { id: '34', name: 'Coca-Cola 2L', price: 15.00, description: 'Coca-Cola 2 litros', category: 'Bebidas' },
+  { id: '35', name: 'Guaraná 2L', price: 15.00, description: 'Guaraná 2 litros', category: 'Bebidas' },
 
   /* ---------- Sucos (Copo) ---------- */
   { id: '40', name: 'Suco Maracujá Copo', price: 10.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
