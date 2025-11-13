@@ -75,19 +75,41 @@ const menuItems = [
   { id: '1', name: 'Carne', price: 10.00, description: 'Espetinho de carne suculenta', category: 'Espetinhos' },
   { id: '2', name: 'Asinha', price: 10.00, description: 'Asinha temperada', category: 'Espetinhos' },
   { id: '3', name: 'Frango com Bacon', price: 10.00, description: 'Frango enrolado em bacon', category: 'Espetinhos' },
+
   { id: '5', name: 'Arroz', price: 5.00, description: 'Arroz simples', category: 'Acompanhamentos' },
   { id: '6', name: 'Feijão tropeiro', price: 5.00, description: 'Feijão tropeiro', category: 'Acompanhamentos' },
   { id: '7', name: 'Mandioca cozida', price: 5.00, description: 'Mandioca cozida', category: 'Acompanhamentos' },
   { id: '8', name: 'Vinagrete', price: 5.00, description: 'Vinagrete temperado', category: 'Acompanhamentos' },
-  { id: '9', name: 'Refrigerante Lata', price: 6.00, description: 'Guaraná / Coca', category: 'Bebidas' },
-  { id: '10', name: 'Cerveja Heineken', price: 15.00, description: 'Cerveja de garrafa', category: 'Bebidas' },
-  { id: '11', name: 'Suco Maracujá Copo', price: 10.00, description: 'Suco natural', category: 'Bebidas' },
-  { id: '12', name: 'Suco Cajá 1L', price: 20.00, description: 'Suco natural 1 litro', category: 'Bebidas' },
+
+  /* ---------- Bebidas ---------- */
+  { id: '27', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
+  { id: '28', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
+
+  { id: '29', name: 'Coca-Cola 1L', price: 10.00, description: 'Coca-Cola 1 litro', category: 'Bebidas' },
+  { id: '30', name: 'Guaraná 1L', price: 10.00, description: 'Guaraná 1 litro', category: 'Bebidas' },
+
+  { id: '31', name: 'Coca-Cola 2L', price: 15.00, description: 'Coca-Cola 2 litros', category: 'Bebidas' },
+  { id: '32', name: 'Guaraná 2L', price: 15.00, description: 'Guaraná 2 litros', category: 'Bebidas' },
+
+  /* ---------- Sucos (Copo) ---------- */
+  { id: '40', name: 'Suco Maracujá Copo', price: 10.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
+  { id: '41', name: 'Suco Cajá Copo', price: 10.00, description: 'Suco natural de cajá', category: 'Bebidas' },
+  { id: '42', name: 'Suco Goiaba Copo', price: 10.00, description: 'Suco natural de goiaba', category: 'Bebidas' },
+  { id: '43', name: 'Suco Acerola Copo', price: 10.00, description: 'Suco natural de acerola', category: 'Bebidas' },
+
+  /* ---------- Sucos (Jarra / 1L) ---------- */
+  { id: '44', name: 'Suco Maracujá Jarra 1L', price: 20.00, description: 'Suco natural de maracujá 1 litro', category: 'Bebidas' },
+  { id: '45', name: 'Suco Cajá Jarra 1L', price: 20.00, description: 'Suco natural de cajá 1 litro', category: 'Bebidas' },
+  { id: '46', name: 'Suco Goiaba Jarra 1L', price: 20.00, description: 'Suco natural de goiaba 1 litro', category: 'Bebidas' },
+  { id: '47', name: 'Suco Acerola Jarra 1L', price: 20.00, description: 'Suco natural de acerola 1 litro', category: 'Bebidas' },
+
+  /* ---------- Jantinhas ---------- */
   { id: '23', name: 'Simples', price: 10.00, description: 'Jantinha simples', category: 'Jantinhas' },
   { id: '24', name: 'Completa', price: 18.00, description: 'Jantinha completa', category: 'Jantinhas' },
   { id: '25', name: 'Retirada', price: 19.00, description: 'Jantinha para retirada', category: 'Jantinhas' },
   { id: '26', name: 'Entrega', price: 23.00, description: 'Jantinha para entrega', category: 'Jantinhas' }
 ];
+
 
 function loadMenu(items) {
   const wrap = document.getElementById('menu');
