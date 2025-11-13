@@ -1,0 +1,347 @@
+/* 🌐 Tema Brasa */
+:root {
+  --bg: #0b0b0b;
+  --card: #101010;
+  --muted: #9aa0a6;
+  --accent: #ff6b35; /* Laranja Brasa */
+  --accent-2: #ffb86b; /* Dourado quente */
+  --glass: rgba(255, 255, 255, 0.03);
+  --radius: 14px;
+  --max-width: 1100px;
+}
+
+/* 🧼 Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #070707 0%, #0b0b0b 100%);
+  color: #eee;
+  font-family: 'Inter', system-ui, sans-serif;
+  padding: 32px;
+}
+
+/* 🧭 Layout */
+.container {
+  max-width: var(--max-width);
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 22px;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 🏷️ Cabeçalho */
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto 28px;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.06), transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo-img {
+  width: 70px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.site-header h1 span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tag {
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 📦 Card */
+.card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* 🧾 Menu */
+.menu-grid h3 {
+  color: var(--accent-2);
+  margin: 20px 0 10px;
+  font-size: 18px;
+}
+
+.dish {
+  padding: 14px;
+  background: var(--glass);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.dish:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.dish h4 {
+  font-size: 17px;
+  color: #fff;
+}
+
+.dish .small {
+  color: var(--muted);
+}
+
+.price {
+  font-weight: bold;
+  color: var(--accent-2);
+}
+
+/* 🛒 Carrinho */
+.info h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.cart-list {
+  list-style: none;
+  margin-bottom: 14px;
+  padding: 0;
+}
+
+.cart-item {
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--glass);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-2);
+  margin-bottom: 10px;
+}
+
+/* 🧭 Botões */
+button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transition: all 0.5s ease;
+}
+
+button:hover::before {
+  left: 125%;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 22px rgba(255, 107, 53, 0.8);
+}
+
+button.secondary {
+  background: #222;
+  color: var(--muted);
+  box-shadow: none;
+}
+
+button.secondary:hover {
+  color: #fff;
+  background: #333;
+}
+
+/* 📦 Botões do Carrinho */
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 🧾 Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card);
+  padding: 24px;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.modal-content h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.modal-content label {
+  font-size: 14px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #1a1a1a;
+  color: #eee;
+  margin-top: 4px;
+}
+
+.modal-content input:focus {
+  border: 1px solid var(--accent);
+}
+
+.modal-actions {
+  margin-top: 16px;
+}
+
+/* ⚓ Rodapé */
+.site-footer {
+  max-width: var(--max-width);
+  margin: 30px auto 0;
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 🧩 Animações extras */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card, .dish, .cart-item, .modal-content {
+  animation: fadeIn 0.3s ease;
+}
+
+/* 📱 Responsividade Mobile */
+@media (max-width: 750px) {
+  body {
+    padding: 18px;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .site-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .dish h4 {
+    font-size: 15px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .total-price {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .modal-content {
+    padding: 20px;
+    width: 94%;
+  }
+
+  .site-footer {
+    font-size: 13px;
+    padding: 12px;
+  }
+}

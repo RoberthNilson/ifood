@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brasa Espetaria - Cardápio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="src/brasa.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+    <div>
+      <h1><span>Brasa Espetaria</span></h1>
+      <div class="small">🔥 Sabor na brasa • Espetinhos e acompanhamentos 🔥</div>
+    </div>
+    <div class="tag">Aberto • Faça seu pedido</div>
+  </header>
+
+  <main class="container">
+
+    <!-- Cardápio -->
+    <section class="card menu">
+      <h2 class="section-title">Cardápio</h2>
+      <div id="menu" class="menu-grid"></div>
+    </section>
+
+    <!-- Carrinho -->
+    <aside class="card info">
+      <h3>Seu Pedido</h3>
+      <div id="empty" class="small">Carrinho vazio — adicione itens</div>
+      <ul id="cart" class="cart-list"></ul>
+
+      <div class="small">Total:</div>
+      <div id="total" class="total-price">R$ 0,00</div>
+
+      <div class="btn-container">
+        <button id="btn-clear" class="secondary">Limpar</button>
+        <button id="btn-checkout" class="primary">Finalizar Pedido</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Brasa Espetaria</p>
+  </footer>
+
+  <!-- 🔥 Modal de Checkout (com opção mesa/endereço) -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h3>Finalizar pedido</h3>
+
+      <!-- Tipo do pedido -->
+      <div style="margin-bottom:10px;">
+        <label style="margin-right:12px;">
+          <input type="radio" name="orderType" value="mesa" checked> Na mesa
+        </label>
+        <label>
+          <input type="radio" name="orderType" value="endereco"> No endereço
+        </label>
+      </div>
+
+      <!-- Campos da mesa -->
+      <div id="table-group" style="margin-bottom:8px;">
+        <label for="cust-table">Número da Mesa:</label>
+        <input type="text" id="cust-table" placeholder="Ex: 5">
+
+        <label for="cust-people" style="margin-left:8px;">Número de Pessoas:</label>
+        <input type="number" id="cust-people" placeholder="Ex: 4">
+      </div>
+
+      <!-- Campo endereço -->
+      <div id="address-group" style="display:none; margin-bottom:8px;">
+        <label>Endereço
+          <input id="cust-address" type="text" placeholder="Rua, número, complemento" style="margin-left:8px;">
+        </label>
+      </div>
+
+      <!-- Dados pessoais -->
+      <div style="margin-bottom:8px;">
+        <label>Nome
+          <input id="cust-name" type="text" placeholder="Seu nome" style="margin-left:8px;">
+        </label>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label>Telefone
+          <input id="cust-phone" type="text" placeholder="(99) 99999-9999" style="margin-left:8px;">
+        </label>
+      </div>
+
+      <!-- Botões -->
+      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end;">
+        <button id="modal-cancel" class="secondary">Cancelar</button>
+        <button id="modal-confirm" class="primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
