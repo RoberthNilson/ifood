@@ -83,9 +83,9 @@ const menuItems = [
 
   /* ---------- Bebidas ---------- */
 
-  { id: '27', name: 'Heineken', price: 6.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
-  { id: '28', name: 'Skoll', price: 6.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
-  { id: '29', name: 'Original', price: 6.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
+  { id: '27', name: 'Heineken', price: 15.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
+  { id: '28', name: 'Skoll', price: 12.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
+  { id: '29', name: 'Original', price: 12.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
 
   { id: '30', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
   { id: '31', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
@@ -262,3 +262,4 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
     alert('Erro ao salvar pedido.');
   }
 });
+
