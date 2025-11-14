@@ -82,10 +82,9 @@ const menuItems = [
   { id: '8', name: 'Vinagrete', price: 5.00, description: 'Vinagrete temperado', category: 'Acompanhamentos' },
 
   /* ---------- Bebidas ---------- */
-
-  { id: '27', name: 'Heineken', price: 15.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
-  { id: '28', name: 'Skoll', price: 12.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
-  { id: '29', name: 'Original', price: 12.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
+  { id: '27', name: 'Heineken', price: 6.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
+  { id: '28', name: 'Skoll', price: 6.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
+  { id: '29', name: 'Original', price: 6.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
 
   { id: '30', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
   { id: '31', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
@@ -95,17 +94,17 @@ const menuItems = [
   { id: '34', name: 'Coca-Cola 2L', price: 15.00, description: 'Coca-Cola 2 litros', category: 'Bebidas' },
   { id: '35', name: 'Guaraná 2L', price: 15.00, description: 'Guaraná 2 litros', category: 'Bebidas' },
 
-  /* ---------- Sucos (Copo) ---------- */
+  /* ---------- Sucos Copo ---------- */
   { id: '40', name: 'Suco Maracujá Copo', price: 10.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
   { id: '41', name: 'Suco Cajá Copo', price: 10.00, description: 'Suco natural de cajá', category: 'Bebidas' },
   { id: '42', name: 'Suco Goiaba Copo', price: 10.00, description: 'Suco natural de goiaba', category: 'Bebidas' },
   { id: '43', name: 'Suco Acerola Copo', price: 10.00, description: 'Suco natural de acerola', category: 'Bebidas' },
 
-  /* ---------- Sucos (Jarra / 1L) ---------- */
-  { id: '44', name: 'Suco Maracujá Jarra 1L', price: 20.00, description: 'Suco natural de maracujá 1 litro', category: 'Bebidas' },
-  { id: '45', name: 'Suco Cajá Jarra 1L', price: 20.00, description: 'Suco natural de cajá 1 litro', category: 'Bebidas' },
-  { id: '46', name: 'Suco Goiaba Jarra 1L', price: 20.00, description: 'Suco natural de goiaba 1 litro', category: 'Bebidas' },
-  { id: '47', name: 'Suco Acerola Jarra 1L', price: 20.00, description: 'Suco natural de acerola 1 litro', category: 'Bebidas' },
+  /* ---------- Sucos Jarra ---------- */
+  { id: '44', name: 'Suco Maracujá Jarra 1L', price: 20.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
+  { id: '45', name: 'Suco Cajá Jarra 1L', price: 20.00, description: 'Suco natural de cajá', category: 'Bebidas' },
+  { id: '46', name: 'Suco Goiaba Jarra 1L', price: 20.00, description: 'Suco natural de goiaba', category: 'Bebidas' },
+  { id: '47', name: 'Suco Acerola Jarra 1L', price: 20.00, description: 'Suco natural de acerola', category: 'Bebidas' },
 
   /* ---------- Jantinhas ---------- */
   { id: '23', name: 'Simples', price: 10.00, description: 'Jantinha simples', category: 'Jantinhas' },
@@ -113,7 +112,6 @@ const menuItems = [
   { id: '25', name: 'Retirada', price: 19.00, description: 'Jantinha para retirada', category: 'Jantinhas' },
   { id: '26', name: 'Entrega', price: 23.00, description: 'Jantinha para entrega', category: 'Jantinhas' }
 ];
-
 
 function loadMenu(items) {
   const wrap = document.getElementById('menu');
@@ -166,7 +164,7 @@ const orderTypeEls = document.getElementsByName('orderType');
 const tableGroup = document.getElementById('table-group');
 const addressGroup = document.getElementById('address-group');
 const custTable = document.getElementById('cust-table');
-const custPeople = document.getElementById('cust-people'); // 👈 novo campo
+const custPeople = document.getElementById('cust-people');
 const custAddress = document.getElementById('cust-address');
 const custName = document.getElementById('cust-name');
 const custPhone = document.getElementById('cust-phone');
@@ -212,12 +210,13 @@ function updateOrderTypeUI() {
 for (const r of orderTypeEls) r.addEventListener('change', updateOrderTypeUI);
 updateOrderTypeUI();
 
+/* ---------- CONFIRMAR PEDIDO COM TAXA ---------- */
 document.getElementById('modal-confirm').addEventListener('click', async () => {
   const name = custName.value.trim();
   const phone = custPhone.value.trim();
   const type = getSelectedOrderType();
   const table = custTable.value.trim();
-  const people = custPeople.value.trim(); // 👈 novo valor
+  const people = custPeople.value.trim();
   const address = custAddress.value.trim();
 
   if (!name) return alert('Preencha o nome para continuar.');
@@ -228,17 +227,24 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
     return alert('Informe o número da mesa e a quantidade de pessoas.');
   }
 
+  // TAXA DE ENTREGA
+  const deliveryFee = type === 'endereco' ? 4 : 0;
+
+  // TOTAL FINAL
+  const totalAmount = cart.reduce((s, i) => s + i.price * i.qty, 0) + deliveryFee;
+
   const order = {
     customer: {
       name,
       phone: type === 'endereco' ? phone : null,
       address: type === 'endereco' ? address : null,
       table: type === 'mesa' ? table : null,
-      people: type === 'mesa' ? people : null, // 👈 novo campo no pedido
+      people: type === 'mesa' ? people : null,
       type
     },
     items: cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty })),
-    total: cart.reduce((s, i) => s + i.price * i.qty, 0),
+    total: totalAmount,
+    deliveryFee,
     status: 'pending',
     createdAt: serverTimestamp()
   };
@@ -262,4 +268,3 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
     alert('Erro ao salvar pedido.');
   }
 });
-
