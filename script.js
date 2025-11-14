@@ -110,7 +110,6 @@ const menuItems = [
   { id: '23', name: 'Simples', price: 10.00, description: 'Jantinha simples', category: 'Jantinhas' },
   { id: '24', name: 'Completa', price: 18.00, description: 'Jantinha completa', category: 'Jantinhas' },
   { id: '25', name: 'Retirada', price: 19.00, description: 'Jantinha para retirada', category: 'Jantinhas' },
-  { id: '26', name: 'Entrega', price: 23.00, description: 'Jantinha para entrega', category: 'Jantinhas' }
 ];
 
 function loadMenu(items) {
@@ -268,3 +267,4 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
     alert('Erro ao salvar pedido.');
   }
 });
+
