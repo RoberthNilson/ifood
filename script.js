@@ -7,7 +7,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 /* ===========================
-   CONFIG FIREBASE (já preenchido)
+   CONFIG FIREBASE
    =========================== */
 const firebaseConfig = {
   apiKey: "AIzaSyALDxcnIacY1imCzqGU9miBFd26KNvd_Qw",
@@ -68,7 +68,7 @@ function changeQty(id, delta) {
   else saveCart();
 }
 
-/* Renderiza carrinho na UI (usa IDs: cart, empty, total) */
+/* Renderiza carrinho na UI */
 function renderCart() {
   const ul = document.getElementById('cart') || document.getElementById('cart-items');
   const emptyMsg = document.getElementById('empty');
@@ -99,7 +99,6 @@ function renderCart() {
         <strong>${it.name}</strong>
         <div class="small">${formatPrice(it.price || 0)} x ${it.qty}</div>
       </div>
-
       <div style="display:flex; flex-direction:column; gap:6px;">
         <div>
           <button class="secondary" data-action="inc" data-id="${it.id}">+</button>
@@ -127,7 +126,7 @@ function renderCart() {
   });
 }
 
-/* Limpar carrinho — botão opcional */
+/* Limpar carrinho */
 document.addEventListener('click', (e) => {
   if (e.target && e.target.id === 'btn-clear') {
     cart = [];
@@ -148,20 +147,13 @@ const menuItems = [
   { id: '7', name: 'Mandioca', price: 5, description: 'Mandioca cozida', category: 'Acompanhamentos' },
   { id: '8', name: 'Vinagrete', price: 5, description: 'Vinagrete', category: 'Acompanhamentos' },
 
-     { id: '', name: 'Coca-cola lata', price: 6, description: 'refrigerante', category: 'Bebidas' },
-     { id: '', name: 'Guaraná lata', price: 6, description: 'refrigerante', category: 'Bebidas' },
-     { id: '', name: 'Coca-Cola 1L', price: 10, description: 'refrigerante', category: 'Bebidas' },
-    { id: '', name: 'Guaraná 1L', price: 10, description: 'refrigerante', category: 'Bebidas' },
-     { id: '', name: 'Coca-Cola 2L', price: 15, description: 'refrigerante', category: 'Bebidas' },
-     { id: '', name: 'Guaraná 2L', price: 15, description: 'refrigerante', category: 'Bebidas' },
-   
-  { id: '', name: 'Heineken 600ml', price: 15, description: 'Cerveja', category: 'Bebidas' },
-  { id: '', name: 'Skol 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
-  { id: '', name: 'Original 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
+  { id: '27', name: 'Heineken 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
+  { id: '28', name: 'Skol 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
+  { id: '29', name: 'Original 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
 
-  { id: '', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
-  { id: '', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
-  { id: '', name: 'Retirada', price: 19, description: 'Para viagem', category: 'Jantinhas' }
+  { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
+  { id: '24', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
+  { id: '25', name: 'Retirada', price: 19, description: 'Para viagem', category: 'Jantinhas' }
 ];
 
 function loadMenu(items) {
@@ -299,7 +291,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* Enviar pedido para Firebase Realtime Database (botão modal-confirm) */
+/* Enviar pedido para Firebase */
 document.addEventListener('click', async (e) => {
   if (!e.target) return;
   if (e.target.id !== 'modal-confirm') return;
@@ -337,7 +329,6 @@ document.addEventListener('click', async (e) => {
 
     await push(ref(db, 'orders'), order);
 
-    // limpa carrinho e UI
     cart = [];
     saveCart();
 
@@ -346,9 +337,9 @@ document.addEventListener('click', async (e) => {
 
     alert("Pedido enviado com sucesso! 🔥");
 
-    // limpar campos do formulário
-    const ids = ['cust-name','cust-phone','cust-address','cust-table','cust-people'];
-    ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    // limpar campos
+    ['cust-name','cust-phone','cust-address','cust-table','cust-people']
+      .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
   } catch (err) {
     console.error(err);
@@ -357,28 +348,10 @@ document.addEventListener('click', async (e) => {
 });
 
 /* ===========================
-   Inicialização UI ao carregar
+   Inicialização UI
    =========================== */
 document.addEventListener('DOMContentLoaded', () => {
   loadMenu(menuItems);
   renderCart();
-
-  // se existirem botões .add-btn criados fora do loadMenu, garantir que acionem addToCart
-  document.querySelectorAll('.add-btn').forEach(b => {
-    if (!b.dataset.bound) {
-      b.addEventListener('click', () => {
-        const parent = b.closest('.dish');
-        // tenta extrair nome/preço se houver
-        const name = parent?.querySelector('h4')?.textContent || 'Item';
-        const priceText = parent?.querySelector('.price')?.textContent || 'R$ 0,00';
-        const priceNum = Number((priceText.replace('R$','').replace('.','').replace(',','.')) || 0);
-        addToCart({ id: 'manual-' + Math.random().toString(36).slice(2,8), name, price: priceNum });
-      });
-      b.dataset.bound = '1';
-    }
-  });
-
-  // inicia estado do UI de pedido
   updateOrderUI();
 });
-
