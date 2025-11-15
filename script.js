@@ -148,13 +148,20 @@ const menuItems = [
   { id: '7', name: 'Mandioca', price: 5, description: 'Mandioca cozida', category: 'Acompanhamentos' },
   { id: '8', name: 'Vinagrete', price: 5, description: 'Vinagrete', category: 'Acompanhamentos' },
 
-  { id: '27', name: 'Heineken 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
-  { id: '28', name: 'Skol 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
-  { id: '29', name: 'Original 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
+     { id: '', name: 'Coca-cola lata', price: 6, description: 'refrigerante', category: 'Bebidas' },
+     { id: '', name: 'Guaraná lata', price: 6, description: 'refrigerante', category: 'Bebidas' },
+     { id: '', name: 'Coca-Cola 1L', price: 10, description: 'refrigerante', category: 'Bebidas' },
+    { id: '', name: 'Guaraná 1L', price: 10, description: 'refrigerante', category: 'Bebidas' },
+     { id: '', name: 'Coca-Cola 2L', price: 15, description: 'refrigerante', category: 'Bebidas' },
+     { id: '', name: 'Guaraná 2L', price: 15, description: 'refrigerante', category: 'Bebidas' },
+   
+  { id: '', name: 'Heineken 600ml', price: 15, description: 'Cerveja', category: 'Bebidas' },
+  { id: '', name: 'Skol 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
+  { id: '', name: 'Original 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
 
-  { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
-  { id: '24', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
-  { id: '25', name: 'Retirada', price: 19, description: 'Para viagem', category: 'Jantinhas' }
+  { id: '', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
+  { id: '', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
+  { id: '', name: 'Retirada', price: 19, description: 'Para viagem', category: 'Jantinhas' }
 ];
 
 function loadMenu(items) {
@@ -374,3 +381,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // inicia estado do UI de pedido
   updateOrderUI();
 });
+
