@@ -37,38 +37,51 @@ function formatPrice(n) {
 function renderCart() {
   const ul = document.getElementById('cart');
   ul.innerHTML = '';
+
   if (cart.length === 0) {
     document.getElementById('empty').style.display = 'block';
     document.getElementById('total').textContent = 'R$ 0,00';
     return;
   }
+
   document.getElementById('empty').style.display = 'none';
   let total = 0;
+
   cart.forEach(it => {
     total += it.price * it.qty;
+
     const li = document.createElement('li');
     li.className = 'cart-item';
+
     li.innerHTML = `
       <div style="flex:1">
         <strong>${it.name}</strong>
-        <div class='small'>${formatPrice(it.price)} x ${it.qty}</div>
+        <div class="small">${formatPrice(it.price)} x ${it.qty}</div>
       </div>
-      <div style="display:flex;flex-direction:column; gap:6px; align-items:flex-end;">
+
+      <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
         <div>
-          <button class='secondary' onclick="changeQty('${it.id}',1)">+</button>
-          <button class='secondary' onclick="changeQty('${it.id}',-1)">-</button>
+          <button class="secondary" onclick="changeQty('${it.id}',1)">+</button>
+          <button class="secondary" onclick="changeQty('${it.id}',-1)">-</button>
         </div>
-        <button class='secondary' onclick="removeFromCart('${it.id}')">Remover</button>
-      </div>`;
+        <button class="secondary" onclick="removeFromCart('${it.id}')">Remover</button>
+      </div>
+    `;
+
     ul.appendChild(li);
   });
+
   document.getElementById('total').textContent = formatPrice(total);
 }
 
 window.addToCart = addToCart;
 window.changeQty = changeQty;
 window.removeFromCart = removeFromCart;
-document.getElementById('btn-clear').addEventListener('click', () => { cart = []; saveCart(); });
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+  cart = [];
+  saveCart();
+});
 
 /* ---------- Menu ---------- */
 const menuItems = [
@@ -81,81 +94,137 @@ const menuItems = [
   { id: '7', name: 'Mandioca cozida', price: 5.00, description: 'Mandioca cozida', category: 'Acompanhamentos' },
   { id: '8', name: 'Vinagrete', price: 5.00, description: 'Vinagrete temperado', category: 'Acompanhamentos' },
 
-  /* ---------- Bebidas ---------- */
-  { id: '27', name: 'Heineken', price: 6.00, description: 'Heineken garrafa 600ml', category: 'Bebidas' },
-  { id: '28', name: 'Skoll', price: 6.00, description: 'Skoll garrafa 600ml', category: 'Bebidas' },
-  { id: '29', name: 'Original', price: 6.00, description: 'Original garrafa 600ml', category: 'Bebidas' },
+  { id: '27', name: 'Heineken', price: 6.00, description: 'Heineken 600ml', category: 'Bebidas' },
+  { id: '28', name: 'Skoll', price: 6.00, description: 'Skoll 600ml', category: 'Bebidas' },
+  { id: '29', name: 'Original', price: 6.00, description: 'Original 600ml', category: 'Bebidas' },
 
-  { id: '30', name: 'Coca-Cola Lata', price: 6.00, description: 'Coca lata 350ml', category: 'Bebidas' },
-  { id: '31', name: 'Guaraná Lata', price: 6.00, description: 'Guaraná lata 350ml', category: 'Bebidas' },
-  { id: '32', name: 'Coca-Cola 1L', price: 10.00, description: 'Coca-Cola 1 litro', category: 'Bebidas' },
-  { id: '33', name: 'Guaraná 1L', price: 10.00, description: 'Guaraná 1 litro', category: 'Bebidas' },
+  { id: '30', name: 'Coca-Cola Lata', price: 6.00, description: '350ml', category: 'Bebidas' },
+  { id: '31', name: 'Guaraná Lata', price: 6.00, description: '350ml', category: 'Bebidas' },
 
-  { id: '34', name: 'Coca-Cola 2L', price: 15.00, description: 'Coca-Cola 2 litros', category: 'Bebidas' },
-  { id: '35', name: 'Guaraná 2L', price: 15.00, description: 'Guaraná 2 litros', category: 'Bebidas' },
+  { id: '40', name: 'Suco Maracujá Copo', price: 10.00, description: 'Natural', category: 'Bebidas' },
+  { id: '41', name: 'Suco Cajá Copo', price: 10.00, description: 'Natural', category: 'Bebidas' },
 
-  /* ---------- Sucos Copo ---------- */
-  { id: '40', name: 'Suco Maracujá Copo', price: 10.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
-  { id: '41', name: 'Suco Cajá Copo', price: 10.00, description: 'Suco natural de cajá', category: 'Bebidas' },
-  { id: '42', name: 'Suco Goiaba Copo', price: 10.00, description: 'Suco natural de goiaba', category: 'Bebidas' },
-  { id: '43', name: 'Suco Acerola Copo', price: 10.00, description: 'Suco natural de acerola', category: 'Bebidas' },
-
-  /* ---------- Sucos Jarra ---------- */
-  { id: '44', name: 'Suco Maracujá Jarra 1L', price: 20.00, description: 'Suco natural de maracujá', category: 'Bebidas' },
-  { id: '45', name: 'Suco Cajá Jarra 1L', price: 20.00, description: 'Suco natural de cajá', category: 'Bebidas' },
-  { id: '46', name: 'Suco Goiaba Jarra 1L', price: 20.00, description: 'Suco natural de goiaba', category: 'Bebidas' },
-  { id: '47', name: 'Suco Acerola Jarra 1L', price: 20.00, description: 'Suco natural de acerola', category: 'Bebidas' },
-
-  /* ---------- Jantinhas ---------- */
   { id: '23', name: 'Simples', price: 10.00, description: 'Jantinha simples', category: 'Jantinhas' },
   { id: '24', name: 'Completa', price: 18.00, description: 'Jantinha completa', category: 'Jantinhas' },
-  { id: '25', name: 'Retirada', price: 19.00, description: 'Jantinha para retirada', category: 'Jantinhas' },
+  { id: '25', name: 'Retirada', price: 19.00, description: 'Para retirada', category: 'Jantinhas' },
 ];
 
+/* ---------- Espetos (sem preço) ---------- */
+const skewers = [
+  { id: '1', name: 'Carne' },
+  { id: '2', name: 'Asinha' },
+  { id: '3', name: 'Frango com Bacon' }
+];
+
+let currentJantinha = null;
+
+/* ---------- Abrir Modal de Espetos ---------- */
+function openSkewerModal(jantinha) {
+  currentJantinha = jantinha;
+
+  const wrap = document.getElementById('skewer-options');
+  wrap.innerHTML = '';
+
+  skewers.forEach(s => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <label class="skewer-option">
+        <input 
+          type="radio" 
+          name="skewer" 
+          value="${s.id}" 
+          data-name="${s.name}"
+          data-price="0"
+        >
+        ${s.name}
+      </label>
+    `;
+    wrap.appendChild(div);
+  });
+
+  const modal = document.getElementById('modal-skewer');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+/* ---------- Confirmar Espeto ---------- */
+document.getElementById('skewer-confirm').addEventListener('click', () => {
+  const selected = document.querySelector('input[name="skewer"]:checked');
+  if (!selected) return alert('Escolha um espeto.');
+
+  const espeto = {
+    id: selected.value,
+    name: selected.dataset.name,
+    price: 0
+  };
+
+  addToCart({
+    id: `${currentJantinha.id}-${espeto.id}`,
+    name: `${currentJantinha.name} + ${espeto.name}`,
+    price: currentJantinha.price
+  });
+
+  const modal = document.getElementById('modal-skewer');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+});
+
+/* ---------- Cancelar ---------- */
+document.getElementById('skewer-cancel').addEventListener('click', () => {
+  const modal = document.getElementById('modal-skewer');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+});
+
+/* ---------- Carregar Menu ---------- */
 function loadMenu(items) {
   const wrap = document.getElementById('menu');
   wrap.innerHTML = '';
+
   const categories = [...new Set(items.map(i => i.category))];
+
   categories.forEach(cat => {
     const h = document.createElement('h3');
     h.textContent = cat;
     wrap.appendChild(h);
-    items.filter(i => i.category === cat).forEach(it => {
-      const card = document.createElement('div');
-      card.className = 'dish';
-      card.innerHTML = `
-        <div class='meta'>
-          <h4>${it.name}</h4>
-          <p class='small'>${it.description}</p>
-          <div style='display:flex; gap:8px; align-items:center; margin-top:6px;'>
-            <div class='price'>${formatPrice(it.price)}</div>
-            <button class='add-btn' onclick='addToCart(${JSON.stringify({ id: it.id, name: it.name, price: it.price })})'>Adicionar</button>
+
+    items
+      .filter(i => i.category === cat)
+      .forEach(it => {
+        const card = document.createElement('div');
+        card.className = 'dish';
+
+        card.innerHTML = `
+          <div class="meta">
+            <h4>${it.name}</h4>
+            <p class="small">${it.description}</p>
+
+            <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
+              <div class="price">${formatPrice(it.price)}</div>
+              <button class="add-btn">Adicionar</button>
+            </div>
           </div>
-        </div>`;
-      wrap.appendChild(card);
-    });
+        `;
+
+        const btn = card.querySelector('.add-btn');
+
+        if (it.category === 'Jantinhas') {
+          btn.addEventListener('click', () =>
+            openSkewerModal({ id: it.id, name: it.name, price: it.price })
+          );
+        } else {
+          btn.addEventListener('click', () =>
+            addToCart({ id: it.id, name: it.name, price: it.price })
+          );
+        }
+
+        wrap.appendChild(card);
+      });
   });
 }
 
 loadMenu(menuItems);
 renderCart();
-
-/* ---------- Firebase ---------- */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getDatabase, ref, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyALDxcnIacY1imCzqGU9miBFd26KNvd_Qw",
-  authDomain: "brasa-94d92.firebaseapp.com",
-  databaseURL: "https://brasa-94d92-default-rtdb.firebaseio.com",
-  projectId: "brasa-94d92",
-  storageBucket: "brasa-94d92.firebasestorage.app",
-  messagingSenderId: "840468371073",
-  appId: "1:840468371073:web:2ef5dee9af8461bcc85f80"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
 
 /* ---------- Checkout ---------- */
 const modal = document.getElementById('modal');
@@ -187,6 +256,7 @@ function getSelectedOrderType() {
 
 function updateOrderTypeUI() {
   const type = getSelectedOrderType();
+
   if (type === 'mesa') {
     tableGroup.style.display = '';
     addressGroup.style.display = 'none';
@@ -209,7 +279,6 @@ function updateOrderTypeUI() {
 for (const r of orderTypeEls) r.addEventListener('change', updateOrderTypeUI);
 updateOrderTypeUI();
 
-/* ---------- CONFIRMAR PEDIDO COM TAXA ---------- */
 document.getElementById('modal-confirm').addEventListener('click', async () => {
   const name = custName.value.trim();
   const phone = custPhone.value.trim();
@@ -218,18 +287,11 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
   const people = custPeople.value.trim();
   const address = custAddress.value.trim();
 
-  if (!name) return alert('Preencha o nome para continuar.');
-  if (type === 'endereco' && (!address || !phone)) {
-    return alert('Preencha o endereço e telefone para entrega.');
-  }
-  if (type === 'mesa' && (!table || !people)) {
-    return alert('Informe o número da mesa e a quantidade de pessoas.');
-  }
+  if (!name) return alert('Preencha o nome.');
+  if (type === 'endereco' && (!address || !phone)) return alert('Preencha endereço e telefone.');
+  if (type === 'mesa' && (!table || !people)) return alert('Informe mesa e pessoas.');
 
-  // TAXA DE ENTREGA
   const deliveryFee = type === 'endereco' ? 4 : 0;
-
-  // TOTAL FINAL
   const totalAmount = cart.reduce((s, i) => s + i.price * i.qty, 0) + deliveryFee;
 
   const order = {
@@ -252,20 +314,22 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
     await push(ref(db, 'orders'), order);
     cart = [];
     saveCart();
+
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+
     custName.value = "";
     custPhone.value = "";
     custAddress.value = "";
     custTable.value = "";
     custPeople.value = "";
+
     document.querySelector("input[name='orderType'][value='mesa']").checked = true;
     updateOrderTypeUI();
+
     alert("Pedido enviado com sucesso! 🔥");
   } catch (err) {
     console.error('Erro ao salvar pedido no Firebase:', err);
     alert('Erro ao salvar pedido.');
   }
 });
-
-
