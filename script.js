@@ -147,9 +147,16 @@ const menuItems = [
   { id: '7', name: 'Mandioca', price: 5, description: 'Mandioca cozida', category: 'Acompanhamentos' },
   { id: '8', name: 'Vinagrete', price: 5, description: 'Vinagrete', category: 'Acompanhamentos' },
 
-  { id: '27', name: 'Heineken 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
-  { id: '28', name: 'Skol 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
-  { id: '29', name: 'Original 600ml', price: 6, description: 'Cerveja', category: 'Bebidas' },
+  { id: '20', name: 'Coca-Cola Lata', price: 6, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '21', name: 'Guaraná lata', price: 6, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '22', name: 'Coca-Cola 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '23', name: 'Guaraná 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '23', name: 'Guaraná 1L', price: 15, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '24', name: 'Coca-Cola 2L', price: 15, description: 'Refrigerante', category: 'Bebidas' },
+  { id: '26', name: 'Água Mineral 500ml', price: 3, description: 'Água', category: 'Bebidas' },
+  { id: '27', name: 'Heineken 600ml', price: 15, description: 'Cerveja', category: 'Bebidas' },
+  { id: '28', name: 'Skol 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
+  { id: '29', name: 'Original 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
 
   { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
   { id: '24', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
@@ -338,7 +345,7 @@ document.addEventListener('click', async (e) => {
     alert("Pedido enviado com sucesso! 🔥");
 
     // limpar campos
-    ['cust-name','cust-phone','cust-address','cust-table','cust-people']
+    ['cust-name', 'cust-phone', 'cust-address', 'cust-table', 'cust-people']
       .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
   } catch (err) {
