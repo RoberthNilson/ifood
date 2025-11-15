@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- 🌟 Cabeçalho -->
   <header class="site-header">
     <img src="src/brasa.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
     <div>
@@ -16,6 +17,7 @@
     <div class="tag">Aberto • Faça seu pedido</div>
   </header>
 
+  <!-- 🌟 Conteúdo Principal -->
   <main class="container">
 
     <!-- Cardápio -->
@@ -40,12 +42,12 @@
     </aside>
   </main>
 
- <footer class="site-footer">
-  <p>© <span id="year"></span> Brasa Espetaria • Funcionamento: a partir das 19h</p>
-</footer>
+  <!-- 🌟 Rodapé -->
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Brasa Espetaria • Funcionamento: a partir das 17h</p>
+  </footer>
 
-
-  <!-- 🔥 Modal de Checkout (com opção mesa/endereço) -->
+  <!-- 🔥 Modal de Checkout -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content">
       <h3>Finalizar pedido</h3>
@@ -64,7 +66,6 @@
       <div id="table-group" style="margin-bottom:8px;">
         <label for="cust-table">Número da Mesa:</label>
         <input type="text" id="cust-table" placeholder="Ex: 5">
-
         <label for="cust-people" style="margin-left:8px;">Número de Pessoas:</label>
         <input type="number" id="cust-people" placeholder="Ex: 4">
       </div>
@@ -97,8 +98,20 @@
     </div>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- 🔥 Modal de Escolha de Espetos (Jantinhas) -->
+  <div id="modal-skewer" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <h3>Escolha seus espetos</h3>
+      <div id="skewer-options" style="margin-bottom:12px;"></div>
+
+      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end;">
+        <button id="skewer-cancel" class="secondary">Cancelar</button>
+        <button id="skewer-confirm" class="primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase e Script -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
-
