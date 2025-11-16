@@ -70,9 +70,9 @@ function changeQty(id, delta) {
 
 /* Renderiza carrinho na UI */
 function renderCart() {
-  const ul = document.getElementById('cart') || document.getElementById('cart-items');
+  const ul = document.getElementById('cart');
   const emptyMsg = document.getElementById('empty');
-  const totalEl = document.getElementById('total') || document.getElementById('cart-total');
+  const totalEl = document.getElementById('total');
 
   if (!ul || !totalEl) return;
 
@@ -93,7 +93,6 @@ function renderCart() {
 
     const li = document.createElement('li');
     li.className = 'cart-item';
-
     li.innerHTML = `
       <div style="flex:1;">
         <strong>${it.name}</strong>
@@ -107,13 +106,12 @@ function renderCart() {
         <button class="secondary" data-action="remove" data-id="${it.id}">Remover</button>
       </div>
     `;
-
     ul.appendChild(li);
   });
 
   totalEl.textContent = formatPrice(total);
 
-  // Delegação de eventos para os botões
+  // Delegação de eventos
   ul.querySelectorAll('button').forEach(btn => {
     const action = btn.dataset.action;
     const id = btn.dataset.id;
@@ -127,7 +125,7 @@ function renderCart() {
 }
 
 /* Limpar carrinho */
-document.addEventListener('click', (e) => {
+document.addEventListener('click', e => {
   if (e.target && e.target.id === 'btn-clear') {
     cart = [];
     saveCart();
@@ -151,16 +149,10 @@ const menuItems = [
   { id: '21', name: 'Guaraná lata', price: 6, description: 'Refrigerante', category: 'Bebidas' },
   { id: '22', name: 'Coca-Cola 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
   { id: '23', name: 'Guaraná 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '23', name: 'Guaraná 1L', price: 15, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '24', name: 'Coca-Cola 2L', price: 15, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '26', name: 'Água Mineral 500ml', price: 3, description: 'Água', category: 'Bebidas' },
-  { id: '27', name: 'Heineken 600ml', price: 15, description: 'Cerveja', category: 'Bebidas' },
-  { id: '28', name: 'Skol 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
-  { id: '29', name: 'Original 600ml', price: 12, description: 'Cerveja', category: 'Bebidas' },
 
   { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
   { id: '24', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
-  { id: '25', name: 'Retirada', price: 19, description: 'Para viagem', category: 'Jantinhas' }
+  { id: '25', name: 'Retirada', price: 19, description: 'Completa', category: 'Jantinhas' }
 ];
 
 function loadMenu(items) {
@@ -168,7 +160,6 @@ function loadMenu(items) {
   if (!wrap) return;
 
   wrap.innerHTML = '';
-
   const categories = [...new Set(items.map(i => i.category))];
 
   categories.forEach(cat => {
@@ -179,7 +170,6 @@ function loadMenu(items) {
     items.filter(i => i.category === cat).forEach(it => {
       const div = document.createElement('div');
       div.className = 'dish';
-
       div.innerHTML = `
         <div class="meta">
           <h4>${it.name}</h4>
@@ -190,15 +180,12 @@ function loadMenu(items) {
           </div>
         </div>
       `;
-
       const btn = div.querySelector('.add-btn');
-
       if (it.category === "Jantinhas") {
         btn.addEventListener('click', () => openSkewerModal(it));
       } else {
         btn.addEventListener('click', () => addToCart(it));
       }
-
       wrap.appendChild(div);
     });
   });
@@ -221,7 +208,6 @@ function openSkewerModal(jantinha) {
   if (!w) return alert('Modal de espetos não encontrado.');
 
   w.innerHTML = '';
-
   skewers.forEach(s => {
     w.innerHTML += `
       <label class="skewer-option">
@@ -235,28 +221,22 @@ function openSkewerModal(jantinha) {
   if (modal) modal.classList.add('open');
 }
 
-/* confirmação/cancelar do modal de espetos */
-document.addEventListener('click', (e) => {
+/* Confirmação / Cancelar modal de espetos */
+document.addEventListener('click', e => {
   if (!e.target) return;
-
   if (e.target.id === 'skewer-confirm') {
     const selected = document.querySelector("input[name='skewer']:checked");
     if (!selected) return alert("Escolha um espeto.");
     const espetoName = selected.dataset.name;
-
     addToCart({
       id: currentJantinha.id + "-" + selected.value,
       name: `${currentJantinha.name} + ${espetoName}`,
       price: currentJantinha.price
     });
-
-    const modal = document.getElementById('modal-skewer');
-    if (modal) modal.classList.remove('open');
+    document.getElementById('modal-skewer').classList.remove('open');
   }
-
   if (e.target.id === 'skewer-cancel') {
-    const modal = document.getElementById('modal-skewer');
-    if (modal) modal.classList.remove('open');
+    document.getElementById('modal-skewer').classList.remove('open');
   }
 });
 
@@ -270,66 +250,48 @@ function getOrderType() {
 
 function updateOrderUI() {
   const type = getOrderType();
-  const tableGroup = document.getElementById('table-group');
-  const addressGroup = document.getElementById('address-group');
-  const phoneGroup = document.getElementById('phone-group');
-
-  if (tableGroup) tableGroup.style.display = type === "mesa" ? "" : "none";
-  if (addressGroup) addressGroup.style.display = type === "endereco" ? "" : "none";
-  if (phoneGroup) phoneGroup.style.display = type === "endereco" ? "" : "none";
+  document.getElementById('table-group').style.display = (type !== "endereco") ? "" : "none";
+  document.getElementById('address-group').style.display = (type === "endereco") ? "" : "none";
 }
 
-document.addEventListener('change', (e) => {
+/* Alternância de campos */
+document.addEventListener('change', e => {
   if (e.target && e.target.name === 'orderType') updateOrderUI();
 });
 
-document.addEventListener('click', (e) => {
-  if (!e.target) return;
-
-  if (e.target.id === 'btn-checkout') {
+/* Abrir modal checkout */
+document.addEventListener('click', e => {
+  if (e.target && e.target.id === 'btn-checkout') {
     if (cart.length === 0) return alert("Carrinho vazio.");
-    const modal = document.getElementById('modal');
-    if (modal) modal.classList.add('open');
+    document.getElementById('modal').classList.add('open');
   }
-
-  if (e.target.id === 'modal-cancel') {
-    const modal = document.getElementById('modal');
-    if (modal) modal.classList.remove('open');
+  if (e.target && e.target.id === 'modal-cancel') {
+    document.getElementById('modal').classList.remove('open');
   }
 });
 
 /* Enviar pedido para Firebase */
-document.addEventListener('click', async (e) => {
-  if (!e.target) return;
-  if (e.target.id !== 'modal-confirm') return;
+document.addEventListener('click', async e => {
+  if (!e.target || e.target.id !== 'modal-confirm') return;
 
   try {
-    const name = document.getElementById('cust-name')?.value.trim() || '';
-    const phone = document.getElementById('cust-phone')?.value.trim() || '';
-    const address = document.getElementById('cust-address')?.value.trim() || '';
-    const table = document.getElementById('cust-table')?.value.trim() || '';
-    const people = document.getElementById('cust-people')?.value.trim() || '';
     const type = getOrderType();
+    const name = document.getElementById(type === "endereco" ? 'cust-name-address' : 'cust-name')?.value.trim();
+    const table = document.getElementById('cust-table')?.value.trim();
+    const people = document.getElementById('cust-people')?.value.trim();
+    const phone = document.getElementById('cust-phone')?.value.trim();
+    const address = document.getElementById('cust-address')?.value.trim();
 
     if (!name) return alert("Preencha seu nome.");
-    if (type === "endereco" && (!address || !phone)) return alert("Preencha endereço e telefone.");
-    if (type === "mesa" && (!table || !people)) return alert("Preencha mesa e pessoas.");
+    if (type === "endereco" && (!phone || !address)) return alert("Preencha telefone e endereço.");
+    if ((type === "mesa" || type === "levar") && (!table || !people)) return alert("Preencha mesa e pessoas.");
 
-    const deliveryFee = type === "endereco" ? 4 : 0;
-    const total = cart.reduce((s, i) => s + (i.price || 0) * i.qty, 0) + deliveryFee;
+    const total = cart.reduce((s, i) => s + (i.price || 0) * i.qty, 0);
 
     const order = {
-      customer: {
-        name,
-        phone: type === "endereco" ? phone : null,
-        address: type === "endereco" ? address : null,
-        table: type === "mesa" ? table : null,
-        people: type === "mesa" ? people : null,
-        type
-      },
+      customer: { name, phone: type === "endereco" ? phone : null, address: type === "endereco" ? address : null, table: (type !== "endereco") ? table : null, people: (type !== "endereco") ? people : null, type },
       items: cart,
       total,
-      deliveryFee,
       status: "pending",
       createdAt: Date.now()
     };
@@ -339,18 +301,19 @@ document.addEventListener('click', async (e) => {
     cart = [];
     saveCart();
 
-    const modal = document.getElementById('modal');
-    if (modal) modal.classList.remove('open');
-
+    document.getElementById('modal').classList.remove('open');
     alert("Pedido enviado com sucesso! 🔥");
 
     // limpar campos
-    ['cust-name', 'cust-phone', 'cust-address', 'cust-table', 'cust-people']
-      .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    ['cust-name','cust-name-address','cust-phone','cust-address','cust-table','cust-people'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    updateOrderUI();
 
-  } catch (err) {
+  } catch(err) {
     console.error(err);
-    alert("Erro ao enviar pedido. Veja o console para detalhes.");
+    alert("Erro ao enviar pedido. Veja o console.");
   }
 });
 
