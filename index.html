@@ -55,52 +55,58 @@
       <h3>Finalizar pedido</h3>
 
       <!-- Tipo do pedido -->
-      <div style="margin-bottom:10px;">
+      <div style="margin-bottom:12px;">
         <label style="margin-right:12px;">
           <input type="radio" name="orderType" value="mesa" checked> Na mesa
         </label>
-        <label>
+        <label style="margin-right:12px;">
           <input type="radio" name="orderType" value="endereco"> No endereço
         </label>
-      </div>
-
-      <!-- Campos da mesa -->
-      <div id="table-group" style="margin-bottom:8px;">
-        <label for="cust-table">Número da Mesa:</label>
-        <input type="text" id="cust-table" placeholder="Ex: 5">
-        <label for="cust-people" style="margin-left:8px;">Número de Pessoas:</label>
-        <input type="number" id="cust-people" placeholder="Ex: 4">
-      </div>
-
-      <!-- Campo endereço -->
-      <div id="address-group" style="display:none; margin-bottom:8px;">
-        <label>Endereço
-          <input id="cust-address" type="text" placeholder="Rua, número, complemento" style="margin-left:8px;">
+        <label>
+          <input type="radio" name="orderType" value="levar"> Para levar
         </label>
       </div>
 
-      <!-- Dados pessoais -->
-      <div style="margin-bottom:8px;">
-        <label>Nome
+      <!-- Campos "Na mesa" e "Para levar" -->
+      <div id="table-group" style="margin-bottom:8px;">
+        <label>Nome:
           <input id="cust-name" type="text" placeholder="Seu nome" style="margin-left:8px;">
         </label>
+        <label style="margin-left:8px;">Número da Mesa:
+          <input type="text" id="cust-table" placeholder="Ex: 5" style="margin-left:4px;">
+        </label>
+        <label style="margin-left:8px;">Número de Pessoas:
+          <input type="number" id="cust-people" placeholder="Ex: 4" style="margin-left:4px;">
+        </label>
       </div>
 
-      <div style="margin-bottom:12px;">
-        <label>Telefone
+      <!-- Campos "No endereço" -->
+      <div id="address-group" style="display:none; margin-bottom:8px;">
+        <label>Nome:
+          <input id="cust-name-address" type="text" placeholder="Seu nome" style="margin-left:8px;">
+        </label>
+        <label style="display:block; margin-top:6px;">Telefone:
           <input id="cust-phone" type="text" placeholder="(99) 99999-9999" style="margin-left:8px;">
         </label>
+        <label style="display:block; margin-top:6px;">Endereço:
+          <input id="cust-address" type="text" placeholder="Rua, número, complemento" style="margin-left:8px;">
+        </label>
+
+        <!-- 🌟 Observação sobre pedidos próximos -->
+        <div class="small" style="margin-top:6px; color:#ff6b35;">
+          Se estiver próximo ao nosso estabelecimento, você pode pedir para levar sem cobrança de taxa de entrega.
+        </div>
       </div>
 
       <!-- Botões -->
-      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end;">
+      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
         <button id="modal-cancel" class="secondary">Cancelar</button>
         <button id="modal-confirm" class="primary">Confirmar</button>
       </div>
     </div>
   </div>
 
-  <!-- 🔥 Modal de Escolha de Espetos (Jantinhas) -->
+  <!-- 🔥 Modal de Escolha de Espetos -->
   <div id="modal-skewer" class="modal" aria-hidden="true">
     <div class="modal-content">
       <h3>Escolha seus espetos</h3>
@@ -113,8 +119,7 @@
     </div>
   </div>
 
-  <!-- Firebase e Script -->
+  <!-- 🔥 Script Externo -->
   <script type="module" src="script.js"></script>
 </body>
-
 </html>
