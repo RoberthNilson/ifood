@@ -151,8 +151,9 @@ const menuItems = [
   { id: '23', name: 'Guaraná 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
 
   { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
-  { id: '24', name: 'Jantinha Completa', price: 18, description: 'Completa', category: 'Jantinhas' },
-  { id: '25', name: 'Retirada', price: 19, description: 'Completa', category: 'Jantinhas' }
+  { id: '24', name: 'Jantinha Completa', price: 20, description: 'Completa', category: 'Jantinhas' },
+  { id: '25', name: 'Retirada', price: 21
+   , description: 'Completa', category: 'Jantinhas' }
 ];
 
 function loadMenu(items) {
@@ -325,3 +326,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCart();
   updateOrderUI();
 });
+
