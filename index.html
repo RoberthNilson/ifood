@@ -9,118 +9,45 @@
 </head>
 
 <body>
-  <!-- 🌟 Cabeçalho -->
+
+  <!-- 🌟 CABEÇALHO -->
   <header class="site-header">
-    <img src="src/brasa.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
-    <div>
+    <div class="header-text">
       <h1><span>Brasa Espetaria</span></h1>
-      <div class="small">🔥 Sabor na brasa • Espetinhos e acompanhamentos 🔥</div>
+      <p class="small">🔥 Sabor na brasa • Espetinhos e acompanhamentos 🔥</p>
     </div>
     <div class="tag">Aberto • Faça seu pedido</div>
   </header>
 
-  <!-- 🌟 Conteúdo Principal -->
-  <main class="container">
+  <!-- 🌟 CARRINHO (AGORA EM CIMA DO CARDÁPIO) -->
+  <section class="card info cart-top">
+    <h3>Seu Pedido</h3>
 
-    <!-- Cardápio -->
+    <div id="empty" class="small">Carrinho vazio — adicione itens</div>
+    <ul id="cart" class="cart-list"></ul>
+
+    <p class="small">Total:</p>
+    <div id="total" class="total-price">R$ 0,00</div>
+
+    <div class="btn-container">
+      <button id="btn-clear" class="secondary">Limpar</button>
+      <button id="btn-checkout" class="primary">Finalizar Pedido</button>
+    </div>
+  </section>
+
+  <!-- 🌟 CARDÁPIO -->
+  <main class="container">
     <section class="card menu">
       <h2 class="section-title">Cardápio</h2>
       <div id="menu" class="menu-grid"></div>
     </section>
-
-    <!-- Carrinho -->
-    <aside class="card info">
-      <h3>Seu Pedido</h3>
-      <div id="empty" class="small">Carrinho vazio — adicione itens</div>
-      <ul id="cart" class="cart-list"></ul>
-
-      <div class="small">Total:</div>
-      <div id="total" class="total-price">R$ 0,00</div>
-
-      <div class="btn-container">
-        <button id="btn-clear" class="secondary">Limpar</button>
-        <button id="btn-checkout" class="primary">Finalizar Pedido</button>
-      </div>
-    </aside>
   </main>
 
-  <!-- 🌟 Rodapé -->
+  <!-- 🌟 RODAPÉ -->
   <footer class="site-footer">
-    <p>© <span id="year"></span> Brasa Espetaria • Funcionamento: a partir das 19h</p>
+    <p>© <span id="year"></span> Brasa Espetaria • Funcionamento: a partir das 17h</p>
   </footer>
 
-  <!-- 🔥 Modal de Checkout -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <h3>Finalizar pedido</h3>
-
-      <!-- Tipo do pedido -->
-      <div style="margin-bottom:12px;">
-        <label style="margin-right:12px;">
-          <input type="radio" name="orderType" value="mesa" checked> Na mesa
-        </label>
-        <label style="margin-right:12px;">
-          <input type="radio" name="orderType" value="endereco"> No endereço
-        </label>
-        <label>
-          <input type="radio" name="orderType" value="levar"> Para levar
-        </label>
-      </div>
-
-      <!-- Campos "Na mesa" e "Para levar" -->
-      <div id="table-group" style="margin-bottom:8px;">
-        <label>Nome:
-          <input id="cust-name" type="text" placeholder="Seu nome" style="margin-left:8px;">
-        </label>
-        <label style="margin-left:8px;">Número da Mesa:
-          <input type="text" id="cust-table" placeholder="Ex: 5" style="margin-left:4px;">
-        </label>
-        <label style="margin-left:8px;">Número de Pessoas:
-          <input type="number" id="cust-people" placeholder="Ex: 4" style="margin-left:4px;">
-        </label>
-      </div>
-
-      <!-- Campos "No endereço" -->
-      <div id="address-group" style="display:none; margin-bottom:8px;">
-        <label>Nome:
-          <input id="cust-name-address" type="text" placeholder="Seu nome" style="margin-left:8px;">
-        </label>
-        <label style="display:block; margin-top:6px;">Telefone:
-          <input id="cust-phone" type="text" placeholder="(99) 99999-9999" style="margin-left:8px;">
-        </label>
-        <label style="display:block; margin-top:6px;">Endereço:
-          <input id="cust-address" type="text" placeholder="Rua, número, complemento" style="margin-left:8px;">
-        </label>
-
-        <!-- 🌟 Observação sobre pedidos próximos -->
-        <div class="small" style="margin-top:6px; color:#ff6b35;">
-          Se estiver próximo ao nosso estabelecimento, você pode pedir para levar sem cobrança de taxa de entrega.
-        </div>
-      </div>
-
-      <!-- Botões -->
-      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;">
-        <button id="modal-cancel" class="secondary">Cancelar</button>
-        <button id="modal-confirm" class="primary">Confirmar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🔥 Modal de Escolha de Espetos -->
-  <div id="modal-skewer" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <h3>Escolha seus espetos</h3>
-      <div id="skewer-options" style="margin-bottom:12px;"></div>
-
-      <div class="modal-actions" style="display:flex; gap:8px; justify-content:flex-end;">
-        <button id="skewer-cancel" class="secondary">Cancelar</button>
-        <button id="skewer-confirm" class="primary">Confirmar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🔥 Script Externo -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
-
