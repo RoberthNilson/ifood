@@ -149,9 +149,15 @@ const menuItems = [
   { id: "10", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
 
   { id: "11", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "12", name: "Guaraná lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "12", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
   { id: "13", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "14", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" }
+  { id: "14", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "15", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "16", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "17", name: "Água Mineral 500ml", price: 3, description: "Água mineral", category: "Bebidas" },
+  { id: "18", name: "Skol 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "19", name: "Original 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "20", name: "Heineken 600ml", price: 15, description: "Cerveja", category: "Bebidas" }
 ];
 
 function loadMenu(items) {
