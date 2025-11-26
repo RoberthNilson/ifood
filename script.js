@@ -196,9 +196,9 @@ function loadMenu(items) {
    Espetos (modal)
    =========================== */
 const skewers = [
-  { id: "4", name: "Carne" },
-  { id: "5", name: "Asinha" },
-  { id: "6", name: "Frango com Bacon" }
+  { id: "1", name: "Carne" },
+  { id: "2", name: "Asinha" },
+  { id: "3", name: "Frango com Bacon" }
 ];
 
 let currentJantinha = null;
