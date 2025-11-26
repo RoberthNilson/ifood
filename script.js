@@ -25,8 +25,8 @@ const db = getDatabase(app);
 /* ===========================
    Atualiza ano no rodapé
    =========================== */
-document.addEventListener('DOMContentLoaded', () => {
-  const elYear = document.getElementById('year');
+document.addEventListener("DOMContentLoaded", () => {
+  const elYear = document.getElementById("year");
   if (elYear) elYear.textContent = new Date().getFullYear();
 });
 
@@ -34,14 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
    Utilidades
    =========================== */
 function formatPrice(n) {
-  return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ',');
+  return "R$ " + Number(n || 0).toFixed(2).replace(".", ",");
 }
 
 /* ===========================
    Carrinho (localStorage)
    =========================== */
-const cartKey = 'brasa_cart_v2';
-let cart = JSON.parse(localStorage.getItem(cartKey) || '[]');
+const cartKey = "brasa_cart_v2";
+let cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
 
 function saveCart() {
   localStorage.setItem(cartKey, JSON.stringify(cart));
@@ -68,31 +68,31 @@ function changeQty(id, delta) {
   else saveCart();
 }
 
-/* Renderiza carrinho na UI */
+/* Renderiza carrinho */
 function renderCart() {
-  const ul = document.getElementById('cart');
-  const emptyMsg = document.getElementById('empty');
-  const totalEl = document.getElementById('total');
+  const ul = document.getElementById("cart");
+  const emptyMsg = document.getElementById("empty");
+  const totalEl = document.getElementById("total");
 
   if (!ul || !totalEl) return;
 
-  ul.innerHTML = '';
+  ul.innerHTML = "";
 
   if (cart.length === 0) {
-    if (emptyMsg) emptyMsg.style.display = 'block';
-    totalEl.textContent = 'R$ 0,00';
+    if (emptyMsg) emptyMsg.style.display = "block";
+    totalEl.textContent = "R$ 0,00";
     return;
   }
 
-  if (emptyMsg) emptyMsg.style.display = 'none';
+  if (emptyMsg) emptyMsg.style.display = "none";
 
   let total = 0;
 
   cart.forEach(it => {
     total += (it.price || 0) * it.qty;
 
-    const li = document.createElement('li');
-    li.className = 'cart-item';
+    const li = document.createElement("li");
+    li.className = "cart-item";
     li.innerHTML = `
       <div style="flex:1;">
         <strong>${it.name}</strong>
@@ -111,22 +111,21 @@ function renderCart() {
 
   totalEl.textContent = formatPrice(total);
 
-  // Delegação de eventos
-  ul.querySelectorAll('button').forEach(btn => {
+  ul.querySelectorAll("button").forEach(btn => {
     const action = btn.dataset.action;
     const id = btn.dataset.id;
     if (!action) return;
-    btn.addEventListener('click', () => {
-      if (action === 'inc') changeQty(id, 1);
-      if (action === 'dec') changeQty(id, -1);
-      if (action === 'remove') removeFromCart(id);
+    btn.addEventListener("click", () => {
+      if (action === "inc") changeQty(id, 1);
+      if (action === "dec") changeQty(id, -1);
+      if (action === "remove") removeFromCart(id);
     });
   });
 }
 
 /* Limpar carrinho */
-document.addEventListener('click', e => {
-  if (e.target && e.target.id === 'btn-clear') {
+document.addEventListener("click", e => {
+  if (e.target && e.target.id === "btn-clear") {
     cart = [];
     saveCart();
   }
@@ -136,41 +135,40 @@ document.addEventListener('click', e => {
    Menu & Itens
    =========================== */
 const menuItems = [
-  { id: '1', name: 'Carne', price: 10, description: 'Espetinho de carne', category: 'Espetinhos' },
-  { id: '2', name: 'Asinha', price: 10, description: 'Asinha temperada', category: 'Espetinhos' },
-  { id: '3', name: 'Frango com Bacon', price: 10, description: 'Frango com bacon', category: 'Espetinhos' },
+  { id: "1", name: "Jantinha Simples", price: 10, description: "Simples", category: "Jantinhas" },
+  { id: "2", name: "Jantinha Completa", price: 20, description: "Completa", category: "Jantinhas" },
+  { id: "3", name: "Retirada", price: 21, description: "Completa", category: "Jantinhas" },
 
-  { id: '5', name: 'Arroz', price: 5, description: 'Arroz simples', category: 'Acompanhamentos' },
-  { id: '6', name: 'Feijão Tropeiro', price: 5, description: 'Tropeiro', category: 'Acompanhamentos' },
-  { id: '7', name: 'Mandioca', price: 5, description: 'Mandioca cozida', category: 'Acompanhamentos' },
-  { id: '8', name: 'Vinagrete', price: 5, description: 'Vinagrete', category: 'Acompanhamentos' },
+  { id: "4", name: "Carne", price: 10, description: "Espetinho de carne", category: "Espetinhos" },
+  { id: "5", name: "Asinha", price: 10, description: "Asinha temperada", category: "Espetinhos" },
+  { id: "6", name: "Frango com Bacon", price: 10, description: "Frango com bacon", category: "Espetinhos" },
 
-  { id: '20', name: 'Coca-Cola Lata', price: 6, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '21', name: 'Guaraná lata', price: 6, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '22', name: 'Coca-Cola 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
-  { id: '23', name: 'Guaraná 1L', price: 10, description: 'Refrigerante', category: 'Bebidas' },
+  { id: "7", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
+  { id: "8", name: "Feijão Tropeiro", price: 5, description: "Tropeiro", category: "Acompanhamentos" },
+  { id: "9", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
+  { id: "10", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
 
-  { id: '23', name: 'Jantinha Simples', price: 10, description: 'Simples', category: 'Jantinhas' },
-  { id: '24', name: 'Jantinha Completa', price: 20, description: 'Completa', category: 'Jantinhas' },
-  { id: '25', name: 'Retirada', price: 21
-   , description: 'Completa', category: 'Jantinhas' }
+  { id: "11", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "12", name: "Guaraná lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "13", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "14", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" }
 ];
 
 function loadMenu(items) {
-  const wrap = document.getElementById('menu');
+  const wrap = document.getElementById("menu");
   if (!wrap) return;
 
-  wrap.innerHTML = '';
+  wrap.innerHTML = "";
   const categories = [...new Set(items.map(i => i.category))];
 
   categories.forEach(cat => {
-    const h = document.createElement('h3');
+    const h = document.createElement("h3");
     h.textContent = cat;
     wrap.appendChild(h);
 
     items.filter(i => i.category === cat).forEach(it => {
-      const div = document.createElement('div');
-      div.className = 'dish';
+      const div = document.createElement("div");
+      div.className = "dish";
       div.innerHTML = `
         <div class="meta">
           <h4>${it.name}</h4>
@@ -181,34 +179,36 @@ function loadMenu(items) {
           </div>
         </div>
       `;
-      const btn = div.querySelector('.add-btn');
+      const btn = div.querySelector(".add-btn");
+
       if (it.category === "Jantinhas") {
-        btn.addEventListener('click', () => openSkewerModal(it));
+        btn.addEventListener("click", () => openSkewerModal(it));
       } else {
-        btn.addEventListener('click', () => addToCart(it));
+        btn.addEventListener("click", () => addToCart(it));
       }
+
       wrap.appendChild(div);
     });
   });
 }
 
 /* ===========================
-   Espetos (modal) — sem preço
+   Espetos (modal)
    =========================== */
 const skewers = [
-  { id: '1', name: 'Carne' },
-  { id: '2', name: 'Asinha' },
-  { id: '3', name: 'Frango com Bacon' }
+  { id: "4", name: "Carne" },
+  { id: "5", name: "Asinha" },
+  { id: "6", name: "Frango com Bacon" }
 ];
 
 let currentJantinha = null;
 
 function openSkewerModal(jantinha) {
   currentJantinha = jantinha;
-  const w = document.getElementById('skewer-options');
-  if (!w) return alert('Modal de espetos não encontrado.');
+  const w = document.getElementById("skewer-options");
+  if (!w) return alert("Modal de espetos não encontrado.");
 
-  w.innerHTML = '';
+  w.innerHTML = "";
   skewers.forEach(s => {
     w.innerHTML += `
       <label class="skewer-option">
@@ -218,112 +218,126 @@ function openSkewerModal(jantinha) {
     `;
   });
 
-  const modal = document.getElementById('modal-skewer');
-  if (modal) modal.classList.add('open');
+  document.getElementById("modal-skewer").classList.add("open");
 }
 
-/* Confirmação / Cancelar modal de espetos */
-document.addEventListener('click', e => {
+document.addEventListener("click", e => {
   if (!e.target) return;
-  if (e.target.id === 'skewer-confirm') {
+
+  if (e.target.id === "skewer-confirm") {
     const selected = document.querySelector("input[name='skewer']:checked");
     if (!selected) return alert("Escolha um espeto.");
-    const espetoName = selected.dataset.name;
+
     addToCart({
       id: currentJantinha.id + "-" + selected.value,
-      name: `${currentJantinha.name} + ${espetoName}`,
+      name: `${currentJantinha.name} + ${selected.dataset.name}`,
       price: currentJantinha.price
     });
-    document.getElementById('modal-skewer').classList.remove('open');
+
+    document.getElementById("modal-skewer").classList.remove("open");
   }
-  if (e.target.id === 'skewer-cancel') {
-    document.getElementById('modal-skewer').classList.remove('open');
+
+  if (e.target.id === "skewer-cancel") {
+    document.getElementById("modal-skewer").classList.remove("open");
   }
 });
 
 /* ===========================
-   Checkout modal & envio
+   Checkout
    =========================== */
 function getOrderType() {
   const sel = document.querySelector("input[name='orderType']:checked");
-  return sel ? sel.value : 'endereco';
+  return sel ? sel.value : "endereco";
 }
 
 function updateOrderUI() {
   const type = getOrderType();
-  document.getElementById('table-group').style.display = (type !== "endereco") ? "" : "none";
-  document.getElementById('address-group').style.display = (type === "endereco") ? "" : "none";
+  document.getElementById("table-group").style.display = type !== "endereco" ? "" : "none";
+  document.getElementById("address-group").style.display = type === "endereco" ? "" : "none";
 }
 
-/* Alternância de campos */
-document.addEventListener('change', e => {
-  if (e.target && e.target.name === 'orderType') updateOrderUI();
+document.addEventListener("change", e => {
+  if (e.target.name === "orderType") updateOrderUI();
 });
 
-/* Abrir modal checkout */
-document.addEventListener('click', e => {
-  if (e.target && e.target.id === 'btn-checkout') {
+document.addEventListener("click", e => {
+  if (e.target?.id === "btn-checkout") {
     if (cart.length === 0) return alert("Carrinho vazio.");
-    document.getElementById('modal').classList.add('open');
+    document.getElementById("modal").classList.add("open");
   }
-  if (e.target && e.target.id === 'modal-cancel') {
-    document.getElementById('modal').classList.remove('open');
+
+  if (e.target?.id === "modal-cancel") {
+    document.getElementById("modal").classList.remove("open");
   }
 });
 
-/* Enviar pedido para Firebase */
-document.addEventListener('click', async e => {
-  if (!e.target || e.target.id !== 'modal-confirm') return;
+/* Enviar pedido */
+document.addEventListener("click", async e => {
+  if (e.target?.id !== "modal-confirm") return;
 
   try {
     const type = getOrderType();
-    const name = document.getElementById(type === "endereco" ? 'cust-name-address' : 'cust-name')?.value.trim();
-    const table = document.getElementById('cust-table')?.value.trim();
-    const people = document.getElementById('cust-people')?.value.trim();
-    const phone = document.getElementById('cust-phone')?.value.trim();
-    const address = document.getElementById('cust-address')?.value.trim();
+    const name = document.getElementById(type === "endereco" ? "cust-name-address" : "cust-name")?.value.trim();
+    const phone = document.getElementById("cust-phone")?.value.trim();
+    const address = document.getElementById("cust-address")?.value.trim();
+    const table = document.getElementById("cust-table")?.value.trim();
+    const people = document.getElementById("cust-people")?.value.trim();
 
     if (!name) return alert("Preencha seu nome.");
-    if (type === "endereco" && (!phone || !address)) return alert("Preencha telefone e endereço.");
-    if ((type === "mesa" || type === "levar") && (!table || !people)) return alert("Preencha mesa e pessoas.");
+
+    if (type === "endereco" && (!phone || !address)) {
+      return alert("Preencha telefone e endereço.");
+    }
+
+    if ((type === "mesa" || type === "levar") && (!table || !people)) {
+      return alert("Preencha mesa e pessoas.");
+    }
 
     const total = cart.reduce((s, i) => s + (i.price || 0) * i.qty, 0);
 
     const order = {
-      customer: { name, phone: type === "endereco" ? phone : null, address: type === "endereco" ? address : null, table: (type !== "endereco") ? table : null, people: (type !== "endereco") ? people : null, type },
+      customer: {
+        name,
+        phone: type === "endereco" ? phone : null,
+        address: type === "endereco" ? address : null,
+        table: type !== "endereco" ? table : null,
+        people: type !== "endereco" ? people : null,
+        type
+      },
       items: cart,
       total,
       status: "pending",
       createdAt: Date.now()
     };
 
-    await push(ref(db, 'orders'), order);
+    await push(ref(db, "orders"), order);
 
     cart = [];
     saveCart();
 
-    document.getElementById('modal').classList.remove('open');
+    document.getElementById("modal").classList.remove("open");
     alert("Pedido enviado com sucesso! 🔥");
 
-    // limpar campos
-    ['cust-name','cust-name-address','cust-phone','cust-address','cust-table','cust-people'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
+    // limpar
+    ["cust-name", "cust-name-address", "cust-phone", "cust-address", "cust-table", "cust-people"]
+      .forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+
     updateOrderUI();
 
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     alert("Erro ao enviar pedido. Veja o console.");
   }
 });
 
 /* ===========================
-   Inicialização UI
+   Inicialização
    =========================== */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   loadMenu(menuItems);
   renderCart();
   updateOrderUI();
 });
-
