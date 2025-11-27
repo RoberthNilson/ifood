@@ -105,19 +105,41 @@ function renderCart() {
 // MENU
 // ===========================
 const menuItems = [
-  { id: "1", name: "Espetinho Simples", price: 10, description: "Simples", category: "Jantinhas" },
+  { id: "1", name: "Jantinha Simples", price: 10, description: "Simples", category: "Jantinhas" },
   { id: "2", name: "Jantinha Completa", price: 20, description: "Completa", category: "Jantinhas" },
-  { id: "3", name: "Carne", price: 10, description: "Espetinho de carne", category: "Espetinhos" },
-  { id: "4", name: "Asinha", price: 10, description: "Asinha temperada", category: "Espetinhos" },
-  { id: "5", name: "Frango com Bacon", price: 10, description: "Frango com bacon", category: "Espetinhos" },
-  { id: "6", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
-  { id: "7", name: "Feijão Tropeiro", price: 5, description: "Feijão tropeiro", category: "Acompanhamentos" },
-  { id: "8", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
-  { id: "9", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
-  { id: "10", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "11", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "12", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "13", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" }
+  { id: "3", name: "Retirada", price: 21, description: "Completa", category: "Jantinhas" },
+
+  { id: "4", name: "Carne", price: 10, description: "Espetinho de carne", category: "Espetinhos" },
+  { id: "5", name: "Asinha", price: 10, description: "Asinha temperada", category: "Espetinhos" },
+  { id: "6", name: "Frango com Bacon", price: 10, description: "Frango com bacon", category: "Espetinhos" },
+
+  { id: "7", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
+  { id: "8", name: "Feijão Tropeiro", price: 5, description: "Tropeiro", category: "Acompanhamentos" },
+  { id: "9", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
+  { id: "10", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
+
+  { id: "11", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "12", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "13", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "14", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "15", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "16", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "17", name: "Água Mineral 500ml", price: 3, description: "Água mineral", category: "Bebidas" },
+  { id: "18", name: "Skol 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "19", name: "Original 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "20", name: "Heineken 600ml", price: 15, description: "Cerveja", category: "Bebidas" },
+
+  // Sucos Copo
+  { id: "21", name: "Maracujá Copo", price: 10, description: "Suco", category: "Bebidas" },
+  { id: "22", name: "Cajá Copo", price: 10, description: "Suco", category: "Bebidas" },
+  { id: "23", name: "Goiaba Copo", price: 10, description: "Suco", category: "Bebidas" },
+  { id: "24", name: "Acerola Copo", price: 10, description: "Suco", category: "Bebidas" },
+
+  // Sucos Jarra
+  { id: "25", name: "Maracujá Jarra", price: 20, description: "Suco", category: "Bebidas" },
+  { id: "26", name: "Cajá Jarra", price: 20, description: "Suco", category: "Bebidas" },
+  { id: "27", name: "Goiaba Jarra", price: 20, description: "Suco", category: "Bebidas" },
+  { id: "28", name: "Acerola Jarra", price: 20, description: "Suco", category: "Bebidas" }
 ];
 
 const skewers = [
@@ -132,12 +154,12 @@ let currentJantinha = null;
 // INICIALIZAÇÃO
 // ===========================
 document.addEventListener("DOMContentLoaded", () => {
-  // Atualiza ano
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Carrega menu
+  // Carregar menu
   const wrap = document.getElementById("menu");
   const categories = [...new Set(menuItems.map(i => i.category))];
+
   categories.forEach(cat => {
     const h = document.createElement("h3");
     h.textContent = cat;
@@ -157,8 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       const btn = div.querySelector(".add-btn");
-      if (it.category === "Jantinhas") btn.addEventListener("click", () => openSkewerModal(it));
-      else btn.addEventListener("click", () => addToCart(it));
+      if (it.category === "Jantinhas") 
+        btn.addEventListener("click", () => openSkewerModal(it));
+      else 
+        btn.addEventListener("click", () => addToCart(it));
+
       wrap.appendChild(div);
     });
   });
@@ -177,11 +202,13 @@ function openSkewerModal(jantinha) {
   skewers.forEach(s => {
     const label = document.createElement("label");
     label.className = "skewer-option";
+
     const input = document.createElement("input");
     input.type = "radio";
     input.name = "skewer";
     input.value = s.id;
     input.dataset.name = s.name;
+
     label.appendChild(input);
     label.appendChild(document.createTextNode(s.name));
     container.appendChild(label);
@@ -193,11 +220,13 @@ function openSkewerModal(jantinha) {
 document.getElementById("skewer-confirm").addEventListener("click", () => {
   const selected = document.querySelector("input[name='skewer']:checked");
   if (!selected) return alert("Escolha um espeto.");
+
   addToCart({
     id: currentJantinha.id + "-" + selected.value,
     name: `${currentJantinha.name} - ${selected.dataset.name}`,
     price: currentJantinha.price
   });
+
   document.getElementById("modal-skewer").classList.remove("open");
 });
 
@@ -216,23 +245,36 @@ document.getElementById("btn-checkout")?.addEventListener("click", () => {
   document.getElementById("modal").classList.add("open");
 });
 
-document.getElementById("modal-cancel")?.addEventListener("click", () => document.getElementById("modal").classList.remove("open"));
+document.getElementById("modal-cancel")?.addEventListener("click", () => {
+  document.getElementById("modal").classList.remove("open");
+});
 
 document.getElementById("modal-confirm")?.addEventListener("click", async () => {
-  const name = document.getElementById("cust-name")?.value.trim();
-  const table = document.getElementById("cust-table")?.value.trim();
-  const people = document.getElementById("cust-people")?.value.trim();
-  if (!name || !table || !people) return alert("Preencha todos os campos!");
-  if (cart.length === 0) return alert("Carrinho vazio!");
+  const name = document.getElementById("cust-name").value.trim();
+  const table = document.getElementById("cust-table").value.trim();
+  const people = document.getElementById("cust-people").value.trim();
+
+  if (!name || !table || !people)
+    return alert("Preencha todos os campos!");
+
+  if (cart.length === 0)
+    return alert("Carrinho vazio!");
 
   const total = cart.reduce((sum, i) => sum + (i.price || 0) * i.qty, 0);
-  const order = { customer: { name, table, people, type: "mesa" }, items: cart, total, status: "pending", createdAt: Date.now() };
+
+  const order = {
+    customer: { name, table, people, type: "mesa" },
+    items: cart,
+    total,
+    status: "pending",
+    createdAt: Date.now()
+  };
 
   try {
     await push(ref(db, "orders"), order);
     cart = [];
     saveCart();
-    ["cust-name","cust-table","cust-people"].forEach(id => document.getElementById(id).value = "");
+    ["cust-name", "cust-table", "cust-people"].forEach(id => document.getElementById(id).value = "");
     document.getElementById("modal").classList.remove("open");
     alert("Pedido enviado! 🔥");
   } catch (err) {
@@ -248,4 +290,3 @@ document.getElementById("btn-clear")?.addEventListener("click", () => {
   cart = [];
   saveCart();
 });
-
