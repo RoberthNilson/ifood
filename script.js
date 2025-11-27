@@ -105,7 +105,7 @@ function renderCart() {
 // MENU
 // ===========================
 const menuItems = [
-  { id: "1", name: "Jantinha Simples", price: 10, description: "Simples", category: "Jantinhas" },
+  { id: "1", name: "Espetinho Simples", price: 10, description: "Simples", category: "Jantinhas" },
   { id: "2", name: "Jantinha Completa", price: 20, description: "Completa", category: "Jantinhas" },
   { id: "3", name: "Carne", price: 10, description: "Espetinho de carne", category: "Espetinhos" },
   { id: "4", name: "Asinha", price: 10, description: "Asinha temperada", category: "Espetinhos" },
@@ -248,3 +248,4 @@ document.getElementById("btn-clear")?.addEventListener("click", () => {
   cart = [];
   saveCart();
 });
+
