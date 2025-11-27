@@ -118,9 +118,6 @@ const menuItems = [
   { id: "11", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
   { id: "12", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
   { id: "13", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" }
-  { id: "14", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" }
-  { id: "15", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" }
-  { id: "13", name: "Maracuja", price: 10, description: "Suco", category: "Bebidas" }
 ];
 
 const skewers = [
@@ -251,4 +248,3 @@ document.getElementById("btn-clear")?.addEventListener("click", () => {
   cart = [];
   saveCart();
 });
-
