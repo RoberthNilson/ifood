@@ -1,4 +1,4 @@
-/* 🌐 Tema Brasa */
+/* 🌐 TEMA BRASA ATUALIZADO */
 :root {
   --bg: #0b0b0b;
   --card: #101010;
@@ -56,11 +56,17 @@ body {
   font-weight: bold;
 }
 
+/* ===========================
+   CONTAINER
+=========================== */
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
 }
 
+/* ===========================
+   CARD
+=========================== */
 .card {
   background: var(--card);
   border-radius: var(--radius);
@@ -153,7 +159,7 @@ button:hover {
 }
 
 /* ===========================
-   MODAL ESPETOS (NOVO DESIGN)
+   MODAL GERAL
 =========================== */
 .modal {
   display: none;
@@ -171,26 +177,109 @@ button:hover {
   display: flex;
 }
 
-.modal-content,
-.modal-box {
+.modal .modal-content {
   background: rgba(20, 20, 20, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
-  padding: 26px;
+  padding: 28px 26px;
   width: 90%;
   max-width: 420px;
-  color: white;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   animation: slideUp .35s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
-.modal-box h2 {
-  margin: 0 0 16px;
+/* ===========================
+   MODAL TÍTULOS
+=========================== */
+.modal h2,
+.modal h3 {
   text-align: center;
-  font-size: 1.4rem;
   color: var(--accent);
   letter-spacing: 1px;
+  margin-bottom: 12px;
 }
 
+/* ===========================
+   MODAL INPUTS & SELECTS
+=========================== */
+.modal .input,
+.modal select.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08); /* fundo mais claro */
+  color: #fff; /* texto visível */
+  font-size: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+/* Option individual */
+.modal select.input option {
+  background: #101010;
+  color: #fff;
+}
+
+/* Foco no select/input */
+.modal .input:focus,
+.modal select.input:focus {
+  border-color: var(--accent);
+  background: rgba(255, 107, 53, 0.08);
+  color: #fff;
+}
+
+.modal label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+/* ===========================
+   MODAL BOTÕES
+=========================== */
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 10px 0;
+  font-weight: 600;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.modal-buttons .primary {
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  color: #fff;
+}
+
+.modal-buttons .primary:hover {
+  filter: brightness(1.15);
+}
+
+.modal-buttons .secondary {
+  background: #222;
+  color: var(--muted);
+}
+
+.modal-buttons .secondary:hover {
+  filter: brightness(1.1);
+}
+
+/* ===========================
+   MODAL ESPETOS
+=========================== */
 .skewer-list {
   display: flex;
   flex-direction: column;
@@ -222,21 +311,9 @@ button:hover {
   cursor: pointer;
 }
 
-/* Botões do modal */
-.modal-actions,
-.modal-buttons {
-  margin-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.modal-actions button,
-.modal-buttons button {
-  flex: 1;
-}
-
-/* Animações */
+/* ===========================
+   ANIMAÇÕES
+=========================== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -254,4 +331,24 @@ button:hover {
   text-align: center;
   margin-top: 20px;
   color: var(--muted);
+  font-size: 13px;
+}
+
+/* ===========================
+   RESPONSIVIDADE
+=========================== */
+@media screen and (max-width: 500px) {
+  body {
+    padding: 16px;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
 }
