@@ -8,11 +8,12 @@
   --accent: #ff6b35;
   --accent-2: #ffb86b;
   --glass: rgba(255, 255, 255, 0.06);
-  --line: rgba(255,255,255,.08);
+  --line: rgba(255, 255, 255, 0.08);
   --radius: 14px;
   --max-width: 1100px;
   --card-padding: 16px;
   --card-margin: 20px;
+  --transition: 0.25s;
 }
 
 /*********************************
@@ -29,6 +30,7 @@ body {
   font-family: 'Inter', sans-serif;
   color: #eee;
   padding: 24px;
+  line-height: 1.5;
 }
 
 /*********************************
@@ -45,10 +47,10 @@ body {
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  transition: background .3s;
+  transition: background var(--transition);
 }
 
-.header-text h1 span {
+.site-header h1 span {
   color: var(--accent);
 }
 
@@ -62,6 +64,7 @@ body {
   background: var(--accent);
   border-radius: 18px;
   font-weight: bold;
+  transition: background var(--transition);
 }
 
 /*********************************
@@ -77,8 +80,8 @@ body {
   border-radius: var(--radius);
   padding: var(--card-padding);
   margin-bottom: var(--card-margin);
-  box-shadow: 0 8px 25px rgba(0,0,0,.5);
-  transition: transform .25s, background .25s;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition), background var(--transition);
 }
 
 .card:hover {
@@ -87,7 +90,7 @@ body {
 }
 
 /*********************************
- * BOTÕES (PADRÃO GLOBAL)
+ * BOTÕES GLOBAIS
  *********************************/
 button {
   display: flex;
@@ -103,8 +106,8 @@ button {
   white-space: nowrap;
   color: #fff;
   background: linear-gradient(130deg, var(--accent), var(--accent-2));
-  box-shadow: 0 6px 18px rgba(255, 107, 53, .35);
-  transition: transform .25s, filter .25s, box-shadow .25s;
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
+  transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
 }
 
 button:hover {
@@ -141,8 +144,8 @@ button.secondary {
   justify-content: space-between;
   align-items: center;
   border: 1px solid var(--line);
-  box-shadow: 0 8px 25px rgba(0,0,0,.5);
-  transition: transform .25s, background .25s;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition), background var(--transition);
 }
 
 .cart-item:hover {
@@ -165,19 +168,20 @@ button.secondary {
   color: var(--muted);
   font-weight: 700;
   cursor: pointer;
-  transition: .25s;
+  transition: var(--transition);
 }
 
 .cart-item button:hover {
   background: linear-gradient(130deg, var(--accent), var(--accent-2));
   color: #fff;
-  box-shadow: 0 6px 18px rgba(255, 107, 53, .35);
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
 }
 
 .total-price {
   font-size: 22px;
   font-weight: bold;
   color: var(--accent-2);
+  margin-top: 8px;
 }
 
 .btn-container {
@@ -201,7 +205,7 @@ button.secondary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform .25s, background .25s;
+  transition: transform var(--transition), background var(--transition);
 }
 
 .dish:hover {
@@ -215,13 +219,13 @@ button.secondary {
 }
 
 /*********************************
- * MODAIS (PADRÃO)
+ * MODAIS
  *********************************/
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(5px);
   justify-content: center;
   align-items: center;
@@ -233,7 +237,7 @@ button.secondary {
 }
 
 .modal-content {
-  background: rgba(20,20,20,.95);
+  background: rgba(20, 20, 20, 0.95);
   border-radius: var(--radius);
   padding: 24px;
   width: 90%;
@@ -241,7 +245,7 @@ button.secondary {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.6);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
 .modal h3 {
@@ -257,8 +261,8 @@ select.input {
   width: 100%;
   padding: 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
 
@@ -280,7 +284,7 @@ select option {
 }
 
 /*********************************
- * MESA / LEVAR
+ * TIPO DE PEDIDO (MESA / LEVAR)
  *********************************/
 .order-type {
   display: flex;
@@ -291,13 +295,13 @@ select option {
   flex: 1;
   background: #222;
   color: var(--muted);
-  transition: transform .25s, background .25s;
+  transition: transform var(--transition), background var(--transition);
 }
 
 .order-btn.active {
   background: linear-gradient(130deg, var(--accent), var(--accent-2));
   color: #fff;
-  box-shadow: 0 6px 18px rgba(255, 107, 53, .35);
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
 }
 
 /*********************************
@@ -312,7 +316,371 @@ select option {
   align-items: center;
   cursor: pointer;
   border: 1px solid var(--line);
-  transition: transform .25s, background .25s;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.skewer-option:hover {
+  background: rgba(255, 107, 53, 0.12);
+  transform: translateY(-2px);
+}
+
+.skewer-option input {
+  accent-color: var(--accent);
+}
+
+/*********************************
+ * FOOTER
+ *********************************/
+.site-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/*********************************
+ * RESPONSIVO
+ *********************************/
+@media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dish {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+/*********************************
+ * VARIÁVEIS
+ *********************************/
+:root {
+  --bg: #0b0b0b;
+  --card: #101010;
+  --muted: #9aa0a6;
+  --accent: #ff6b35;
+  --accent-2: #ffb86b;
+  --glass: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.08);
+  --radius: 14px;
+  --max-width: 1100px;
+  --card-padding: 16px;
+  --card-margin: 20px;
+  --transition: 0.25s;
+}
+
+/*********************************
+ * RESET
+ *********************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  color: #eee;
+  padding: 24px;
+  line-height: 1.5;
+}
+
+/*********************************
+ * CABEÇALHO
+ *********************************/
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto var(--card-margin);
+  padding: 20px;
+  background: linear-gradient(90deg, rgba(255, 107, 53, 0.12), transparent);
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  transition: background var(--transition);
+}
+
+.site-header h1 span {
+  color: var(--accent);
+}
+
+.small {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tag {
+  padding: 6px 14px;
+  background: var(--accent);
+  border-radius: 18px;
+  font-weight: bold;
+  transition: background var(--transition);
+}
+
+/*********************************
+ * CONTAINER / CARD
+ *********************************/
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: var(--card-padding);
+  margin-bottom: var(--card-margin);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  background: #1c1c1c;
+}
+
+/*********************************
+ * BOTÕES GLOBAIS
+ *********************************/
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 42px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #fff;
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
+  transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+button.secondary {
+  background: #222;
+  color: var(--muted);
+  box-shadow: none;
+  border: 1px solid #333;
+}
+
+/*********************************
+ * CARRINHO
+ *********************************/
+.cart-top {
+  max-width: var(--max-width);
+  margin: 0 auto var(--card-margin);
+}
+
+.cart-list {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.cart-item {
+  background: var(--glass);
+  padding: 12px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.cart-item:hover {
+  background: rgba(255, 107, 53, 0.12);
+  transform: translateY(-2px);
+}
+
+.cart-item > div:last-child {
+  display: flex;
+  gap: 6px;
+}
+
+.cart-item button {
+  width: 42px;
+  height: 38px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cart-item button:hover {
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
+}
+
+.total-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--accent-2);
+  margin-top: 8px;
+}
+
+.btn-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.btn-container button {
+  flex: 1;
+}
+
+/*********************************
+ * CARDÁPIO
+ *********************************/
+.dish {
+  background: var(--glass);
+  padding: var(--card-padding);
+  border-radius: var(--radius);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.dish:hover {
+  background: rgba(255, 107, 53, 0.12);
+  transform: translateY(-2px);
+}
+
+.price {
+  font-weight: bold;
+  color: var(--accent-2);
+}
+
+/*********************************
+ * MODAIS
+ *********************************/
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: var(--radius);
+  padding: 24px;
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.modal h3 {
+  text-align: center;
+  color: var(--accent);
+}
+
+/*********************************
+ * INPUTS
+ *********************************/
+.input,
+select.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+select option {
+  background: #101010;
+}
+
+/*********************************
+ * MODAL BOTÕES
+ *********************************/
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.modal-buttons button {
+  flex: 1;
+}
+
+/*********************************
+ * TIPO DE PEDIDO (MESA / LEVAR)
+ *********************************/
+.order-type {
+  display: flex;
+  gap: 10px;
+}
+
+.order-btn {
+  flex: 1;
+  background: #222;
+  color: var(--muted);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.order-btn.active {
+  background: linear-gradient(130deg, var(--accent), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255, 107, 53, 0.35);
+}
+
+/*********************************
+ * MODAL ESPETOS
+ *********************************/
+.skewer-option {
+  background: var(--glass);
+  padding: 12px;
+  border-radius: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid var(--line);
+  transition: transform var(--transition), background var(--transition);
 }
 
 .skewer-option:hover {
