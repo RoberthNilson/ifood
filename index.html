@@ -1,135 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brasa Espetaria - Cardápio</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brasa Espetaria - Cardápio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<!-- CABEÇALHO -->
-<header class="site-header">
-  <div class="header-text">
-    <h1>Brasa Espetaria</h1>
-    <p class="small">Sabor na brasa • Espetinhos e acompanhamentos</p>
-  </div>
-  <div class="tag">Aberto</div>
-</header>
+  <!-- CABEÇALHO -->
+  <header class="site-header">
+    <div class="header-text">
+      <h1>Brasa Espetaria</h1>
+      <p class="small">Sabor na brasa • Espetinhos e acompanhamentos</p>
+    </div>
+    <div class="tag">Aberto</div>
+  </header>
 
-<!-- CARRINHO -->
-<section class="card cart-top">
-  <h3>Seu Pedido</h3>
-  <p id="empty" class="small">Carrinho vazio</p>
-  <ul id="cart" class="cart-list"></ul>
+  <!-- CARRINHO -->
+  <section class="card cart-top">
+    <h3>Seu Pedido</h3>
+    <p id="empty" class="small">Carrinho vazio</p>
+    <ul id="cart" class="cart-list"></ul>
 
-  <p class="small">Total</p>
-  <div id="total" class="total-price">R$ 0,00</div>
+    <p class="small">Total</p>
+    <div id="total" class="total-price">R$ 0,00</div>
 
-  <div class="btn-container">
-    <button id="btn-clear" class="secondary">Limpar</button>
-    <button id="btn-checkout" class="primary">Finalizar</button>
-  </div>
-</section>
-
-<!-- CARDÁPIO -->
-<main class="container">
-  <section class="card">
-    <h2>Cardápio</h2>
-    <div id="menu"></div>
+    <div class="btn-container">
+      <button id="btn-clear" class="secondary">Limpar</button>
+      <button id="btn-checkout" class="primary">Finalizar</button>
+    </div>
   </section>
-</main>
 
-<!-- MODAL ESPETOS -->
-<div id="modal-skewer" class="modal">
-  <div class="modal-content">
-    <h3>Escolha o Espeto</h3>
-    <div id="skewer-options"></div>
+  <!-- CARDÁPIO -->
+  <main class="container">
+    <section class="card">
+      <h2>Cardápio</h2>
+      <div id="menu"></div>
+    </section>
+  </main>
 
-    <div class="modal-buttons">
-      <button id="skewer-cancel" class="secondary">Cancelar</button>
-      <button id="skewer-confirm" class="primary">Confirmar</button>
+  <!-- MODAL ESPETOS -->
+  <div id="modal-skewer" class="modal">
+    <div class="modal-content">
+      <h3>Escolha o Espeto</h3>
+      <div id="skewer-options"></div>
+
+      <div class="modal-buttons">
+        <button id="skewer-cancel" class="secondary">Cancelar</button>
+        <button id="skewer-confirm" class="primary">Confirmar</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- MODAL CHECKOUT -->
-<div id="modal" class="modal">
-  <div class="modal-content">
+  <!-- MODAL CHECKOUT -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
 
-    <h3>Finalizar Pedido</h3>
+      <h3>Finalizar Pedido</h3>
 
-    <!-- NOME -->
-    <label>Nome</label>
-    <input id="cust-name" class="input" placeholder="Ex: João">
 
- 
 
-    <!-- BLOCO MESA -->
-    <div id="box-mesa">
+      <!-- BLOCO MESA -->
+      <div id="box-mesa">
+        <label>Nome</label>
+        <input id="cust-name" class="input" placeholder="Ex: João">
 
-      <label>Quantidade de pessoas</label>
-      <select id="cust-people" class="input">
-        <option value="">Selecione</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+        <label>Quantidade de pessoas</label>
+        <select id="cust-people" class="input">
+          <option value="">Selecione</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
 
-      <label>Mesa</label>
-      <select id="cust-table" class="input">
-        <option value="">Selecione</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+        <label>Mesa</label>
+        <select id="cust-table" class="input">
+          <option value="">Selecione</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+
+      <!-- BLOCO LEVAR -->
+      <div id="box-levar" style="display:none;">
+        <label>Nome</label>
+        <input id="cust-name-levar" class="input" placeholder="Ex: João">
+
+        <label>Endereço</label>
+         <input id="cust-endereco-levar" class="input" placeholder="Ex: Rua das Flores, 123">
+
+        <label>Ponto de Referência</label>
+         <input id="cust-rua-levar" class="input" placeholder="Ex: Rua das Flores">
+      </div>
+
+      <!-- TIPO PEDIDO -->
+      <label>Tipo do pedido</label>
+      <div class="order-type">
+        <button type="button" class="order-btn active" data-type="mesa">
+          🍽 Comer aqui
+        </button>
+        <button type="button" class="order-btn" data-type="levar">
+          🛍 Levar
+        </button>
+      </div>
+
+      <div class="modal-buttons">
+        <button id="modal-cancel" class="secondary">Cancelar</button>
+        <button id="modal-confirm" class="primary">Enviar Pedido</button>
+      </div>
 
     </div>
-
-
-    <!-- BLOCO ENTREGA -->
-    <div id="box-levar" style="display:none;">
-
-      <label>Rua</label>
-      <input id="cust-rua" class="input">
-
-      <label>Número</label>
-      <input id="cust-numero" class="input">
-
-      <label>Bairro</label>
-      <input id="cust-bairro" class="input">
-
-    </div>
-    
-   <!-- TIPO PEDIDO -->
-    <label>Tipo do pedido</label>
-    <div class="order-type">
-      <button type="button" class="order-btn active" data-type="mesa">
-        🍽 Comer aqui
-      </button>
-      <button type="button" class="order-btn" data-type="levar">
-        🛍 Levar
-      </button>
-    </div>
-    <div class="modal-buttons">
-      <button id="modal-cancel" class="secondary">Cancelar</button>
-      <button id="modal-confirm" class="primary">Enviar Pedido</button>
-    </div>
-
   </div>
-</div>
 
-<!-- RODAPÉ -->
-<footer class="site-footer">
-  © <span id="year"></span> Brasa Espetaria
-</footer>
+  <!-- RODAPÉ -->
+  <footer class="site-footer">
+    © <span id="year"></span> Brasa Espetaria
+  </footer>
 
-<script type="module" src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
+
 </html>
