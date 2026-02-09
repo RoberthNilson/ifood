@@ -2,69 +2,74 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Brasa Espetaria - Cardápio</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brasa Espetaria - Cardápio</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- CABEÇALHO -->
-  <header class="site-header">
-    <div class="header-text">
-      <h1><span>Brasa Espetaria</span></h1>
-      <p class="small">Sabor na brasa • Espetinhos e acompanhamentos</p>
-    </div>
-    <div class="tag">Aberto</div>
-  </header>
+<!-- CABEÇALHO -->
+<header class="site-header">
+  <div class="header-text">
+    <h1>Brasa Espetaria</h1>
+    <p class="small">Sabor na brasa • Espetinhos e acompanhamentos</p>
+  </div>
+  <div class="tag">Aberto</div>
+</header>
 
-  <!-- CARRINHO -->
-  <section class="card cart-top">
-    <h3>Seu Pedido</h3>
-    <p id="empty" class="small">Carrinho vazio</p>
-    <ul id="cart" class="cart-list"></ul>
+<!-- CARRINHO -->
+<section class="card cart-top">
+  <h3>Seu Pedido</h3>
+  <p id="empty" class="small">Carrinho vazio</p>
+  <ul id="cart" class="cart-list"></ul>
 
-    <p class="small">Total</p>
-    <div id="total" class="total-price">R$ 0,00</div>
+  <p class="small">Total</p>
+  <div id="total" class="total-price">R$ 0,00</div>
 
-    <div class="btn-container">
-      <button id="btn-clear" class="secondary">Limpar</button>
-      <button id="btn-checkout" class="primary">Finalizar</button>
-    </div>
+  <div class="btn-container">
+    <button id="btn-clear" class="secondary">Limpar</button>
+    <button id="btn-checkout" class="primary">Finalizar</button>
+  </div>
+</section>
+
+<!-- CARDÁPIO -->
+<main class="container">
+  <section class="card">
+    <h2>Cardápio</h2>
+    <div id="menu"></div>
   </section>
+</main>
 
-  <!-- CARDÁPIO -->
-  <main class="container">
-    <section class="card">
-      <h2>Cardápio</h2>
-      <div id="menu"></div>
-    </section>
-  </main>
+<!-- MODAL ESPETOS -->
+<div id="modal-skewer" class="modal">
+  <div class="modal-content">
+    <h3>Escolha o Espeto</h3>
+    <div id="skewer-options"></div>
 
-  <!-- MODAL ESPETOS -->
-  <div id="modal-skewer" class="modal">
-    <div class="modal-content">
-      <h3>Escolha o Espeto</h3>
-      <div id="skewer-options"></div>
-
-      <div class="modal-buttons">
-        <button id="skewer-cancel" class="secondary">Cancelar</button>
-        <button id="skewer-confirm" class="primary">Confirmar</button>
-      </div>
+    <div class="modal-buttons">
+      <button id="skewer-cancel" class="secondary">Cancelar</button>
+      <button id="skewer-confirm" class="primary">Confirmar</button>
     </div>
   </div>
+</div>
 
-  <!-- MODAL CHECKOUT -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <h3>Finalizar Pedido</h3>
+<!-- MODAL CHECKOUT -->
+<div id="modal" class="modal">
+  <div class="modal-content">
 
-      <!-- NOME -->
-      <label>Nome</label>
-      <input id="cust-name" class="input" placeholder="Ex: João">
+    <h3>Finalizar Pedido</h3>
 
-      <!-- PESSOAS -->
+    <!-- NOME -->
+    <label>Nome</label>
+    <input id="cust-name" class="input" placeholder="Ex: João">
+
+ 
+
+    <!-- BLOCO MESA -->
+    <div id="box-mesa">
+
       <label>Quantidade de pessoas</label>
       <select id="cust-people" class="input">
         <option value="">Selecione</option>
@@ -75,7 +80,6 @@
         <option>5</option>
       </select>
 
-      <!-- MESA (OBRIGATÓRIA SEMPRE) -->
       <label>Mesa</label>
       <select id="cust-table" class="input">
         <option value="">Selecione</option>
@@ -86,33 +90,46 @@
         <option>5</option>
       </select>
 
-      <!-- TIPO DO PEDIDO -->
-      <label>Tipo do pedido</label>
-      <div class="order-type">
-        <button type="button" class="order-btn active" data-type="mesa">
-          🍽 Mesa
-        </button>
-        <button type="button" class="order-btn" data-type="levar">
-          🛍 Levar
-        </button>
-      </div>
-
-      <!-- CAMPO OCULTO -->
-      <input type="hidden" id="order-type" value="mesa">
-
-      <div class="modal-buttons">
-        <button id="modal-cancel" class="secondary">Cancelar</button>
-        <button id="modal-confirm" class="primary">Enviar Pedido</button>
-      </div>
     </div>
+
+
+    <!-- BLOCO ENTREGA -->
+    <div id="box-levar" style="display:none;">
+
+      <label>Rua</label>
+      <input id="cust-rua" class="input">
+
+      <label>Número</label>
+      <input id="cust-numero" class="input">
+
+      <label>Bairro</label>
+      <input id="cust-bairro" class="input">
+
+    </div>
+    
+   <!-- TIPO PEDIDO -->
+    <label>Tipo do pedido</label>
+    <div class="order-type">
+      <button type="button" class="order-btn active" data-type="mesa">
+        🍽 Comer aqui
+      </button>
+      <button type="button" class="order-btn" data-type="levar">
+        🛍 Levar
+      </button>
+    </div>
+    <div class="modal-buttons">
+      <button id="modal-cancel" class="secondary">Cancelar</button>
+      <button id="modal-confirm" class="primary">Enviar Pedido</button>
+    </div>
+
   </div>
+</div>
 
-  <!-- RODAPÉ -->
-  <footer class="site-footer">
-    © <span id="year"></span> Brasa Espetaria
-  </footer>
+<!-- RODAPÉ -->
+<footer class="site-footer">
+  © <span id="year"></span> Brasa Espetaria
+</footer>
 
-  <script type="module" src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
-
 </html>
