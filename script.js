@@ -18,12 +18,52 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 /*********************************
- * UTILIDADES
+ * UTIL
  *********************************/
 const $ = id => document.getElementById(id);
 
 const formatPrice = v =>
   "R$ " + Number(v || 0).toFixed(2).replace(".", ",");
+
+/*********************************
+ * STATUS LOJA AUTOMÁTICO
+ *********************************/
+function lojaAbertaAgora() {
+  const agora = new Date();
+  const dia = agora.getDay(); // Domingo = 0
+  const minutos = agora.getHours() * 60 + agora.getMinutes();
+
+  // Fecha o dia todo no domingo
+  if (dia === 0) return false;
+
+  // Horário de funcionamento: 17:00 - 22:00
+  return minutos >= 17 * 60 && minutos < 22 * 60;
+}
+
+function atualizarStatusLoja() {
+  const tag = document.querySelector(".tag");
+  if (!tag) return;
+
+  const agora = new Date();
+  const dia = agora.getDay();
+
+  if (dia === 0) {
+    tag.textContent = "Fechado";
+    tag.classList.remove("open");
+    tag.classList.add("closed");
+    return; // Domingo fechado o dia todo
+  }
+
+  if (lojaAbertaAgora()) {
+    tag.textContent = "Aberto";
+    tag.classList.remove("closed");
+    tag.classList.add("open");
+  } else {
+    tag.textContent = "Fechado";
+    tag.classList.remove("open");
+    tag.classList.add("closed");
+  }
+}
 
 /*********************************
  * CARRINHO
@@ -99,56 +139,50 @@ function renderCart() {
 }
 
 /*********************************
- * CARDÁPIO
+ * MENU ITEMS
  *********************************/
 const menuItems = [
-  { id: "1", name: "Espetinho Simples", price: 10, description: "Simples", category: "Jantinhas" },
-  { id: "2", name: "Jantinha Completa", price: 20, description: "Completa", category: "Jantinhas" },
-  { id: "3", name: "Retirada", price: 21, description: "Completa", category: "Jantinhas" },
+  // Jantinhas
+  { id: "1", name: "Espetinho Simples", price: 10, category: "Jantinhas" },
+  { id: "2", name: "Jantinha Completa", price: 20, category: "Jantinhas" },
+  { id: "3", name: "Retirada", price: 21, category: "Jantinhas" },
 
-  { id: "4", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
-  { id: "5", name: "Feijão Tropeiro", price: 5, description: "Tropeiro", category: "Acompanhamentos" },
-  { id: "6", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
-  { id: "7", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
+  // Acompanhamentos
+  { id: "7", name: "Arroz", price: 5, category: "Acompanhamentos" },
+  { id: "8", name: "Feijão Tropeiro", price: 5, category: "Acompanhamentos" },
+  { id: "9", name: "Mandioca", price: 5, category: "Acompanhamentos" },
+  { id: "10", name: "Vinagrete", price: 5, category: "Acompanhamentos" },
 
-  { id: "8", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "9", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "10", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "11", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "12", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
-  { id: "13", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
-  { id: "14", name: "Água Mineral 500ml", price: 3, description: "Água mineral", category: "Bebidas" },
-  { id: "15", name: "Skol 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
-  { id: "16", name: "Original 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
-  { id: "1", name: "Heineken 600ml", price: 15, description: "Cerveja", category: "Bebidas" },
+  // Bebidas
+  { id: "11", name: "Coca-Cola Lata", price: 6, category: "Bebidas" },
+  { id: "12", name: "Guaraná Lata", price: 6, category: "Bebidas" },
+  { id: "13", name: "Coca-Cola 1L", price: 10, category: "Bebidas" },
+  { id: "14", name: "Guaraná 1L", price: 10, category: "Bebidas" },
+  { id: "15", name: "Coca-Cola 2L", price: 15, category: "Bebidas" },
+  { id: "16", name: "Guaraná 2L", price: 15, category: "Bebidas" },
+  { id: "17", name: "Água Mineral 500ml", price: 3, category: "Bebidas" },
+  { id: "18", name: "Skol 600ml", price: 12, category: "Bebidas" },
+  { id: "19", name: "Original 600ml", price: 12, category: "Bebidas" },
+  { id: "20", name: "Heineken 600ml", price: 15, category: "Bebidas" },
 
   // Sucos Copo
-  { id: "21", name: "Maracujá Copo", price: 10, description: "Suco", category: "Bebidas" },
-  { id: "22", name: "Cajá Copo", price: 10, description: "Suco", category: "Bebidas" },
-  { id: "23", name: "Goiaba Copo", price: 10, description: "Suco", category: "Bebidas" },
-  { id: "24", name: "Acerola Copo", price: 10, description: "Suco", category: "Bebidas" },
+  { id: "21", name: "Maracujá Copo", price: 10, category: "Sucos Copo" },
+  { id: "22", name: "Cajá Copo", price: 10, category: "Sucos Copo" },
+  { id: "23", name: "Goiaba Copo", price: 10, category: "Sucos Copo" },
+  { id: "24", name: "Acerola Copo", price: 10, category: "Sucos Copo" },
 
   // Sucos Jarra
-  { id: "25", name: "Maracujá Jarra", price: 20, description: "Suco", category: "Bebidas" },
-  { id: "26", name: "Cajá Jarra", price: 20, description: "Suco", category: "Bebidas" },
-  { id: "27", name: "Goiaba Jarra", price: 20, description: "Suco", category: "Bebidas" },
-  { id: "28", name: "Acerola Jarra", price: 20, description: "Suco", category: "Bebidas" }
+  { id: "25", name: "Maracujá Jarra", price: 20, category: "Sucos Jarra" },
+  { id: "26", name: "Cajá Jarra", price: 20, category: "Sucos Jarra" },
+  { id: "27", name: "Goiaba Jarra", price: 20, category: "Sucos Jarra" },
+  { id: "28", name: "Acerola Jarra", price: 20, category: "Sucos Jarra" }
 ];
 
 const skewers = ["Carne", "Asinha", "Frango com Bacon"];
 let selectedJantinha = null;
 
 /*********************************
- * INICIALIZAÇÃO
- *********************************/
-document.addEventListener("DOMContentLoaded", () => {
-  $("year").textContent = new Date().getFullYear();
-  renderMenu();
-  renderCart();
-});
-
-/*********************************
- * RENDER MENU
+ * MENU RENDER
  *********************************/
 function renderMenu() {
   const wrap = $("menu");
@@ -159,43 +193,40 @@ function renderMenu() {
     h3.textContent = cat;
     wrap.appendChild(h3);
 
-    menuItems
-      .filter(i => i.category === cat)
-      .forEach(item => {
-        const div = document.createElement("div");
-        div.className = "dish";
-        div.innerHTML = `
-          <strong>${item.name}</strong>
-          <span class="price">${formatPrice(item.price)}</span>
-          <button class="primary">Adicionar</button>
-        `;
+    menuItems.filter(i => i.category === cat).forEach(item => {
+      const div = document.createElement("div");
+      div.className = "dish";
 
-        div.querySelector("button").onclick = () =>
-          cat === "Jantinhas"
-            ? openSkewerModal(item)
-            : addToCart(item);
+      // Adiciona espaçamento extra para Jantinhas
+      if(item.category === "Jantinhas") div.classList.add("jantinha-card");
 
-        wrap.appendChild(div);
-      });
+      div.innerHTML = `
+        <strong>${item.name}</strong>
+        <span class="price">${formatPrice(item.price)}</span>
+        <button>Adicionar</button>
+      `;
+
+      div.querySelector("button").onclick = () =>
+        cat === "Jantinhas"
+          ? openSkewerModal(item)
+          : addToCart(item);
+
+      wrap.appendChild(div);
+    });
   });
 }
 
 /*********************************
  * MODAL ESPETOS
  *********************************/
-function openSkewerModal(jantinha) {
-  selectedJantinha = jantinha;
+function openSkewerModal(j) {
+  selectedJantinha = j;
   const box = $("skewer-options");
-  box.innerHTML = "";
-
-  skewers.forEach((s, i) => {
-    box.innerHTML += `
-      <label class="skewer-option">
-        <input type="radio" name="skewer" value="${s}" ${i === 0 ? "checked" : ""}>
-        ${s}
-      </label>
-    `;
-  });
+  box.innerHTML = skewers.map((s, i) => `
+    <label class="skewer-option">
+      <input type="radio" name="skewer" value="${s}" ${i === 0 ? "checked" : ""}>
+      ${s}
+    </label>`).join("");
 
   $("modal-skewer").classList.add("open");
 }
@@ -217,7 +248,7 @@ $("skewer-cancel").onclick = () =>
   $("modal-skewer").classList.remove("open");
 
 /*********************************
- * CHECKOUT (MESA / LEVAR)
+ * CHECKOUT
  *********************************/
 let orderType = "mesa";
 
@@ -225,15 +256,14 @@ document.querySelectorAll(".order-btn").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".order-btn")
       .forEach(b => b.classList.remove("active"));
-
     btn.classList.add("active");
     orderType = btn.dataset.type;
-    $("order-type").value = orderType;
   };
 });
 
 $("btn-checkout").onclick = () => {
   if (!cart.length) return alert("Carrinho vazio!");
+  if (!lojaAbertaAgora()) return alert("Estamos fechados.");
   $("modal").classList.add("open");
 };
 
@@ -251,12 +281,7 @@ $("modal-confirm").onclick = async () => {
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
   await push(ref(db, "orders"), {
-    customer: {
-      name,
-      people,
-      table,
-      type: orderType
-    },
+    customer: { name, people, table, type: orderType },
     items: cart,
     total,
     status: "novo",
@@ -266,14 +291,21 @@ $("modal-confirm").onclick = async () => {
   cart = [];
   saveCart();
   $("modal").classList.remove("open");
-  alert("Pedido enviado com sucesso 🔥");
+  alert("Pedido enviado 🔥");
 };
 
-/*********************************
- * LIMPAR CARRINHO
- *********************************/
 $("btn-clear").onclick = () => {
   cart = [];
   saveCart();
 };
 
+/*********************************
+ * INIT
+ *********************************/
+document.addEventListener("DOMContentLoaded", () => {
+  $("year").textContent = new Date().getFullYear();
+  renderMenu();
+  renderCart();
+  atualizarStatusLoja();
+  setInterval(atualizarStatusLoja, 60000); // Atualiza a cada 1 minuto
+});
