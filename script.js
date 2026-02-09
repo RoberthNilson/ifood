@@ -102,29 +102,25 @@ function renderCart() {
  * CARDÁPIO
  *********************************/
 const menuItems = [
-  { id: "1", name: "Jantinha Simples", price: 10, description: "Simples", category: "Jantinhas" },
+  { id: "1", name: "Espetinho Simples", price: 10, description: "Simples", category: "Jantinhas" },
   { id: "2", name: "Jantinha Completa", price: 20, description: "Completa", category: "Jantinhas" },
   { id: "3", name: "Retirada", price: 21, description: "Completa", category: "Jantinhas" },
 
-  { id: "4", name: "Carne", price: 10, description: "Espetinho de carne", category: "Espetinhos" },
-  { id: "5", name: "Asinha", price: 10, description: "Asinha temperada", category: "Espetinhos" },
-  { id: "6", name: "Frango com Bacon", price: 10, description: "Frango com bacon", category: "Espetinhos" },
+  { id: "4", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
+  { id: "5", name: "Feijão Tropeiro", price: 5, description: "Tropeiro", category: "Acompanhamentos" },
+  { id: "6", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
+  { id: "7", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
 
-  { id: "7", name: "Arroz", price: 5, description: "Arroz simples", category: "Acompanhamentos" },
-  { id: "8", name: "Feijão Tropeiro", price: 5, description: "Tropeiro", category: "Acompanhamentos" },
-  { id: "9", name: "Mandioca", price: 5, description: "Mandioca cozida", category: "Acompanhamentos" },
-  { id: "10", name: "Vinagrete", price: 5, description: "Vinagrete", category: "Acompanhamentos" },
-
-  { id: "11", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "12", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
-  { id: "13", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "14", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
-  { id: "15", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
-  { id: "16", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
-  { id: "17", name: "Água Mineral 500ml", price: 3, description: "Água mineral", category: "Bebidas" },
-  { id: "18", name: "Skol 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
-  { id: "19", name: "Original 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
-  { id: "20", name: "Heineken 600ml", price: 15, description: "Cerveja", category: "Bebidas" },
+  { id: "8", name: "Coca-Cola Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "9", name: "Guaraná Lata", price: 6, description: "Refrigerante", category: "Bebidas" },
+  { id: "10", name: "Coca-Cola 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "11", name: "Guaraná 1L", price: 10, description: "Refrigerante", category: "Bebidas" },
+  { id: "12", name: "Coca-Cola 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "13", name: "Guaraná 2L", price: 15, description: "Refrigerante", category: "Bebidas" },
+  { id: "14", name: "Água Mineral 500ml", price: 3, description: "Água mineral", category: "Bebidas" },
+  { id: "15", name: "Skol 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "16", name: "Original 600ml", price: 12, description: "Cerveja", category: "Bebidas" },
+  { id: "1", name: "Heineken 600ml", price: 15, description: "Cerveja", category: "Bebidas" },
 
   // Sucos Copo
   { id: "21", name: "Maracujá Copo", price: 10, description: "Suco", category: "Bebidas" },
@@ -280,3 +276,4 @@ $("btn-clear").onclick = () => {
   cart = [];
   saveCart();
 };
+
